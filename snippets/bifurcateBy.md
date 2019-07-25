@@ -1,8 +1,12 @@
 ### bifurcateBy
 
+------------
+
 Splits values into two groups according to a predicate function, which specifies which group an element in the input collection belongs to. If the predicate function returns a truthy value, the collection element belongs to the first group; otherwise, it belongs to the second group.
 
 Use `Array.prototype.reduce()` and `Array.prototype.push()` to add elements to groups, based on the value returned by `fn` for each element.
+
+------------
 
 根据断言函数（predicate function）会将值分成两组，集合中的元素输入到断言函数中后，来确定元素属于哪一组。如果断言函数返回一个真值，则集合元素属于第一组;否则，它属于第二组。
 
