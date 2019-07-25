@@ -4,6 +4,10 @@ Chains asynchronous functions.
 
 Loop through an array of functions containing asynchronous events, calling `next` when each asynchronous event has completed.
 
+链式调用异步函数。
+
+循环遍历包含异步事件的函数数组，每次异步事件完成后调用 `next`。
+
 ```js
 const chainAsync = fns => {
   let curr = 0;

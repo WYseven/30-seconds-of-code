@@ -1,10 +1,20 @@
 ### isSorted
 
+------------
+
 Returns `1` if the array is sorted in ascending order, `-1` if it is sorted in descending order or `0` if it is not sorted.
 
 Calculate the ordering `direction` for the first two elements.
 Use `Object.entries()` to loop over array objects and compare them in pairs.
 Return `0` if the `direction` changes or the `direction` if the last element is reached.
+
+------------
+
+如果数组按升序排序，返回 `1` ;如果按降序排序，返回 `-1` ;如果没有排序，返回 `0` 。
+
+计算前两个元素的顺序 `direction`。
+使用 `Object.entries()` 对数组对象进行循环并对它们进行比较。
+如果 `direction` 改变了，返回 `0`;如果循环直到最后一个元素，`direction` 没有改变，则返回 `direction`。
 
 ```js
 const isSorted = arr => {

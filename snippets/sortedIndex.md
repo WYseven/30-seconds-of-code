@@ -1,9 +1,18 @@
 ### sortedIndex
 
+------------
+
 Returns the lowest index at which value should be inserted into array in order to maintain its sort order.
 
 Check if the array is sorted in descending order (loosely).
 Use `Array.prototype.findIndex()` to find the appropriate index where the element should be inserted.
+
+------------
+
+返回指定值插入到数组中的最小索引位置，以保持其排序顺序。
+
+检查数组是否按降序（松散地）排序。 使用 `Array.prototype.findIndex()` 找到元素应该被插入的合适的索引位置。
+
 
 ```js
 const sortedIndex = (arr, n) => {

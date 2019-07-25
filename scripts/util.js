@@ -37,15 +37,35 @@ const getFilesInDir = (directoryPath, withPath, exclude = null) => {
     process.exit(1);
   }
 };
-
+//  snippet2 = snippet2.replace(/\n+/g, '~~~');
+// snippet2 = snippet2.replace(/---(.*)---/g, '');
+// snippet2 = snippet2.replace(/~~~/g, '\n');
+const flag = /------------/g;
 // Synchronously read all snippets and sort them as necessary (case-insensitive)
 const readSnippets = snippetsPath => {
-  const snippetFilenames = getFilesInDir(snippetsPath, false);
-
+  let snippetFilenames = getFilesInDir(snippetsPath, false);
+  
   let snippets = {};
   try {
-    for (let snippet of snippetFilenames)
-      snippets[snippet] = fs.readFileSync(path.join(snippetsPath, snippet), 'utf8');
+    for (let snippet of snippetFilenames) {
+      
+      let content = fs.readFileSync(path.join(snippetsPath, snippet), 'utf8');
+      flag.lastIndex = 0;
+      if(flag.test(content)){
+        content = content.replace(/\n/g, '~~~');
+        content = content.replace(/------------(.*)------------/g, '');
+        content = content.replace(/~~~/g, '\n');
+      }
+      //console.log(content);
+      snippets[snippet] = content;
+    }
+    
+      
+      
+      
+      // snippets[snippet] = snippets[snippet].replace(/\n+/g, '~~~');
+      // snippets[snippet] = snippets[snippet].replace(/---(.*)---/g, '');
+      // snippets[snippet] = snippets[snippet].replace(/~~~/g, '\n');
   } catch (err) {
     console.log(`${red('ERROR!')} During snippet loading: ${err}`);
     process.exit(1);

@@ -26,6 +26,10 @@ const colorize = (...args) => ({
 });
 ```
 
+向文本中添加特殊字符，以便在控制台中以彩色方式打印(与 `console.log()` 结合)。
+
+使用模板字面量和特殊字符将相应的颜色代码添加到字符串输出中。 对于有背景颜色的，添加一个特殊字符，在字符串的末尾重置背景颜色。
+
 ```js
 console.log(colorize('foo').red); // 'foo' (red letters)
 console.log(colorize('foo', 'bar').bgBlue); // 'foo bar' (blue background)

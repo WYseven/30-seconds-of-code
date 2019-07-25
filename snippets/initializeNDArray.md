@@ -1,9 +1,18 @@
 ### initializeNDArray
 
+------------
+
 Create a n-dimensional array with given value.
 
 Use recursion.
 Use `Array.prototype.map()` to generate rows where each is a new array initialized using `initializeNDArray`.
+
+------------
+
+创建一个具有给定值的 `n` 维数组。
+
+使用递归。
+使用 `array.prototype.map()` 生成行，其中每个行都是使用 `initializeNDArray` 初始化的新数组。
 
 ```js
 const initializeNDArray = (val, ...args) =>

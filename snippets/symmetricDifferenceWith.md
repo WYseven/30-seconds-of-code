@@ -1,8 +1,16 @@
 ### symmetricDifferenceWith
 
+------------
+
 Returns the symmetric difference between two arrays, using a provided function as a comparator.
 
 Use `Array.prototype.filter()` and `Array.prototype.findIndex()` to find the appropriate values.
+
+------------
+
+使用提供的函数作为比较器，返回两个数组之间的差集。
+
+使用 `Array.prototype.filter()` 和 `Array.prototype.findIndex()` 查找合适的值。
 
 ```js
 const symmetricDifferenceWith = (arr, val, comp) => [

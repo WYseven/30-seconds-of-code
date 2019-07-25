@@ -4,6 +4,11 @@ Binds methods of an object to the object itself, overwriting the existing method
 
 Use `Array.prototype.forEach()` to return a `function` that uses `Function.prototype.apply()` to apply the given context (`obj`) to `fn` for each function specified.
 
+
+将对象的方法绑定到对象本身，覆盖现有方法。
+
+使用 `Array.prototype.forEach()` 返回一个 `function` ，该函数使用 `function.prototype.apply()` 为每个指定的函数将给定的上下文(`obj`) 应用于 `fn`。
+
 ```js
 const bindAll = (obj, ...fns) =>
   fns.forEach(

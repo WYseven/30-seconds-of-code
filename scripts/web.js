@@ -86,12 +86,20 @@ ${
     .replace(/<\/div>\s*<pre class="/g, '</div><pre class="section card-code ')
     .replace(
       /<\/pre>\s+<pre class="/g,
-      '</pre><label class="collapse">examples</label><pre class="section card-examples '
+      '</pre><label class="collapse">示例代码</label><pre class="section card-examples '
     )}
   </div>`;
 const embedCard = tag => `<div class="card code-card"><div class="section card-content">
 ${['adapter','array','function','object'].includes(tag) ? 
-'<h4><a href="https://frontendmasters.com/courses/es6-right-parts/" target="_blank" rel="noopener noreferrer">Recommended Resource - ES6: The Right Parts</a></h4><p>Learn new ES6 JavaScript language features like arrow function, destructuring, generators & more to write cleaner and more productive, readable programs.</p>' 
+`<h4><a href="https://frontendmasters.com/courses/es6-right-parts/" target="_blank" rel="noopener noreferrer">
+    Recommended Resource - ES6: The Right Parts<br/>
+    推荐资源- ES6:正确的部分
+  </a>
+</h4>
+  <p>
+  Learn new ES6 JavaScript language features like arrow function, destructuring, generators & more to write cleaner and more productive, readable programs.<br/>
+  学习新的ES6 JavaScript语言特性，如箭头函数，解构，生成器和更多的编写更干净，更有效，可读的程序。
+  </p>`
 : ['browser', 'node', 'date'].includes(tag) ? 
 '<h4><a href="https://frontendmasters.com/courses/javascript-hard-parts/" target="_blank" rel="noopener noreferrer">Recommended Resource - JavaScript: The Hard Parts</a></h4><p>Take your JavaScript to the next level. Gain an understanding of callbacks, higher order functions, closure, asynchronous and object-oriented JavaScript!</p>' 
 : '<h4><a href="https://frontendmasters.com/courses/js-fundamentals-functional-v2/" target="_blank" rel="noopener noreferrer">Recommended Resource - JavaScript: From Fundamentals to Functional JS</a></h4><p>Learn higher-order functions, closures, scope, master key functional methods like map, reduce and filter and promises and ES6+ asynchronous JavaScript.</p>'
@@ -192,7 +200,7 @@ try {
       output += md
         .render(
           `[${taggedSnippet[0]}](./${
-            tag === 'array' ? 'index' : tag
+            tag === 'array' ? 'index' : tag+'.html'
           }#${taggedSnippet[0].toLowerCase()})\n`
         )
         .replace(/<p>/g, '')
@@ -201,10 +209,10 @@ try {
     }
     output += '</ul>\n';
   }
-  output += `<h4 class="static-link"><a href="./archive">Archive</a></h4>
-  <h4 class="static-link"><a href="./glossary">Glossary</a></h4>
-  <h4 class="static-link"><a href="./contributing">Contributing</a></h4>
-  <h4 class="static-link"><a href="./about">About</a></h4>
+  output += `<h4 class="static-link"><a href="./archive.html">Archive</a></h4>
+  <h4 class="static-link"><a href="./glossary.html">Glossary</a></h4>
+  <h4 class="static-link"><a href="./contributing.html">Contributing</a></h4>
+  <h4 class="static-link"><a href="./about.html">About</a></h4>
   <div><button class="social fb"></button><button class="social instagram"></button><button class="social twitter"></button></div>
   </nav><main class="col-centered"><span id="top"><br/><br/></span>`;
   // Loop over tags and snippets to create the list of snippets
@@ -341,6 +349,7 @@ try {
 
   // Filter README.md from folder
   const filteredArchivedSnippets = filterSnippets(archivedSnippets, ['README.md']);
+
 
   // Generate archived snippets from md files
   for (let snippet of Object.entries(filteredArchivedSnippets))

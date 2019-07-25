@@ -2,7 +2,11 @@
 
 Returns the head of a list.
 
-Use `arr[0]` to return the first element of the passed array.
+Use  to return the first element of the passed array.
+
+返回数组的第一个元素。
+
+使用 `arr[0]` 返回传递数组的第一个元素。
 
 ```js
 const head = arr => arr[0];
