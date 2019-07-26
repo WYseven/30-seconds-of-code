@@ -1,10 +1,13 @@
 ### bind
 
+------------
+
 Creates a function that invokes `fn` with a given context, optionally adding any additional supplied parameters to the beginning of the arguments.
 
 Return a `function` that uses `Function.prototype.apply()` to apply the given `context` to `fn`.
 Use `Array.prototype.concat()` to prepend any additional supplied parameters to the arguments.
 
+------------
 
 创建一个函数，该函数使用给定的上下文调用 `fn`，最初的参数列表中添加任何额外提供的可选参数。
 
