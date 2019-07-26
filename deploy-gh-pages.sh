@@ -15,9 +15,8 @@ else
   fi
 fi
 
-yarn tagger
 
-git add docs -f
+git add .
 
 git commit -m "更新 gh-pages"
 
