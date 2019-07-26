@@ -92,13 +92,11 @@ ${
 const embedCard = tag => `<div class="card code-card"><div class="section card-content">
 ${['adapter','array','function','object'].includes(tag) ? 
 `<h4><a href="https://frontendmasters.com/courses/es6-right-parts/" target="_blank" rel="noopener noreferrer">
-    Recommended Resource - ES6: The Right Parts<br/>
     推荐资源- ES6:正确的部分
   </a>
 </h4>
   <p>
-  Learn new ES6 JavaScript language features like arrow function, destructuring, generators & more to write cleaner and more productive, readable programs.<br/>
-  学习新的ES6 JavaScript语言特性，如箭头函数，解构，生成器和更多的编写更干净，更有效，可读的程序。
+    学习新的ES6 JavaScript语言特性，如箭头函数，解构，生成器和更多的编写更干净，更有效，可读的程序。
   </p>`
 : ['browser', 'node', 'date'].includes(tag) ? 
 '<h4><a href="https://frontendmasters.com/courses/javascript-hard-parts/" target="_blank" rel="noopener noreferrer">Recommended Resource - JavaScript: The Hard Parts</a></h4><p>Take your JavaScript to the next level. Gain an understanding of callbacks, higher order functions, closure, asynchronous and object-oriented JavaScript!</p>' 
