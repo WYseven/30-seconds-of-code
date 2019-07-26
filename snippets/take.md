@@ -8,7 +8,9 @@ Use `Array.prototype.slice()` to create a slice of the array with `n` elements t
 
 ------------
 
+返回从开头开始提取 `n` 个元素的数组。
 
+使用 `array.prototype.slice()` 创建数组的一个切片，其中包含从开头开始提取的 `n` 个元素。
 
 ```js
 const take = (arr, n = 1) => arr.slice(0, n);

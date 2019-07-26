@@ -1,8 +1,12 @@
 ### countOccurrences
 
+------------
+
 Counts the occurrences of a value in an array.
 
 Use `Array.prototype.reduce()` to increment a counter each time you encounter the specific value inside the array.
+
+------------
 
 计算数组中值的出现次数。
 

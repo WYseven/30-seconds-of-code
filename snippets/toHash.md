@@ -1,8 +1,16 @@
 ### toHash
 
+------------
+
 Reduces a given Array-like into a value hash (keyed data store).
 
 Given an Iterable or Array-like structure, call `Array.prototype.reduce.call()` on the provided object to step over it and return an Object, keyed by the reference value.
+
+------------
+
+将给定的类数组简化为值哈希（value hash）(有键的数据存储)。
+
+给定一个可迭代的类数组结构，在提供的对象上调用 `Array.prototype.reduce.call()` 逐个处理元素，并返回一个对象，该对象由键引用一个值。
 
 ```js
 const toHash = (object, key) =>

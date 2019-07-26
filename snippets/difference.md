@@ -1,8 +1,12 @@
 ### difference
 
+------------
+
 Returns the difference between two arrays.
 
 Create a `Set` from `b`, then use `Array.prototype.filter()` on `a` to only keep values not contained in `b`.
+
+------------
 
 返回两个数组之间的差异。
 

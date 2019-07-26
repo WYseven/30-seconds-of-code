@@ -1,8 +1,12 @@
 ### forEachRight
 
+------------
+
 Executes a provided function once for each array element, starting from the array's last element.
 
 Use `Array.prototype.slice(0)` to clone the given array, `Array.prototype.reverse()` to reverse it and `Array.prototype.forEach()` to iterate over the reversed array.
+
+------------
 
 从数组的最后一个元素开始，为每个数组元素执行一次提供的函数。
 

@@ -1,8 +1,12 @@
 ### dropRight
 
+------------
+
 Returns a new array with `n` elements removed from the right.
 
 Use `Array.prototype.slice()` to remove the specified number of elements from the right.
+
+------------
 
 返回从右侧开始删除 `n` 个元素的新数组。
 

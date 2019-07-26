@@ -1,9 +1,13 @@
 ### dropWhile
 
+------------
+
 Removes elements in an array until the passed function returns `true`. Returns the remaining elements in the array.
 
 Loop through the array, using `Array.prototype.slice()` to drop the first element of the array until the returned value from the function is `true`.
 Returns the remaining elements.
+
+------------
 
 移除数组中的元素，直到传递的函数返回 `true` 。 返回数组中剩余的元素。
 

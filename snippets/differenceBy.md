@@ -1,8 +1,12 @@
 ### differenceBy
 
+------------
+
 Returns the difference between two arrays, after applying the provided function to each array element of both.
 
 Create a `Set` by applying `fn` to each element in `b`, then use `Array.prototype.map()` to apply `fn` to each element in `a`, then `Array.prototype.filter()`
+
+------------
 
 将提供的函数应用于两个数组的每个数组元素后，返回两个数组之间的差值。
 

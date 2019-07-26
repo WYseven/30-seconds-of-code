@@ -1,8 +1,12 @@
 ### drop
 
+------------
+
 Returns a new array with `n` elements removed from the left.
 
 Use `Array.prototype.slice()` to remove the specified number of elements from the left.
+
+------------
 
 返回从左侧开始删除 `n` 个元素的新数组。
 

@@ -1,8 +1,12 @@
 ### differenceWith
 
+------------
+
 Filters out all values from an array for which the comparator function does not return `true`.
 
 Use `Array.prototype.filter()` and `Array.prototype.findIndex()` to find the appropriate values.
+
+------------
 
 过滤出数组中比较函数不返回 `true` 的所有值。
 
