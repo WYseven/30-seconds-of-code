@@ -24,6 +24,8 @@ git push
 
 yarn webber
 
+git add docs -f
+
 git commit -m "更新 gh-pages"
 
 git push
