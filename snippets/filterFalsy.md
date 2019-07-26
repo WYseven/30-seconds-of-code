@@ -1,8 +1,12 @@
 ### filterFalsy
 
+------------
+
 Filters out the falsy values in an array.
 
 Use `Array.prototype.filter()` to get an array containing only truthy values.
+
+------------
 
 过滤数组中为假值（falsy）的元素。
 

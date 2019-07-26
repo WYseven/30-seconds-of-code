@@ -1,8 +1,12 @@
 ### filterNonUnique
 
+------------
+
 Filters out the non-unique values in an array.
 
 Use `Array.prototype.filter()` for an array containing only the unique values.
+
+------------
 
 过滤掉数组中的非唯一值。
 
