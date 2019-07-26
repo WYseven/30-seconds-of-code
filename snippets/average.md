@@ -1,8 +1,12 @@
 ### average
 
+------------
+
 Returns the average of two or more numbers.
 
 Use `Array.prototype.reduce()` to add each value to an accumulator, initialized with a value of `0`, divide by the `length` of the array.
+
+------------
 
 返回两个或更多数字的平均值。
 
