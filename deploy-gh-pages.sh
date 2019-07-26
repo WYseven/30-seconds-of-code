@@ -18,6 +18,12 @@ fi
 
 git add .
 
+git commit -m $1
+
+git push 
+
+yarn webber
+
 git commit -m "更新 gh-pages"
 
 git push
