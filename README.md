@@ -2,7 +2,7 @@
 
 # 30 seconds of code
 
-[![License](https://img.shields.io/badge/license-CC0--1.0-blue.svg)](https://github.com/30-seconds/30-seconds-of-code/blob/master/LICENSE) [![npm Downloads](https://img.shields.io/npm/dt/30-seconds-of-code.svg)](https://www.npmjs.com/package/30-seconds-of-code) [![npm Version](https://img.shields.io/npm/v/30-seconds-of-code.svg)](https://www.npmjs.com/package/30-seconds-of-code) [![Known Vulnerabilities](https://snyk.io/test/github/30-seconds/30-seconds-of-code/badge.svg?targetFile=package.json)](https://snyk.io/test/github/30-seconds/30-seconds-of-code?targetFile=package.json) <br/> 
+[![License](https://img.shields.io/badge/license-CC0--1.0-blue.svg)](https://github.com/WYseven/30-seconds-of-code/blob/master/LICENSE) [![npm Downloads](https://img.shields.io/npm/dt/30-seconds-of-code.svg)](https://www.npmjs.com/package/30-seconds-of-code) [![npm Version](https://img.shields.io/npm/v/30-seconds-of-code.svg)](https://www.npmjs.com/package/30-seconds-of-code) [![Known Vulnerabilities](https://snyk.io/test/github/30-seconds/30-seconds-of-code/badge.svg?targetFile=package.json)](https://snyk.io/test/github/30-seconds/30-seconds-of-code?targetFile=package.json) <br/> 
 [![Travis Build](https://travis-ci.com/30-seconds/30-seconds-of-code.svg?branch=master)](https://travis-ci.com/30-seconds/30-seconds-of-code) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6ab7791fb1ea40b4a576d658fb96807f)](https://www.codacy.com/app/Chalarangelo/30-seconds-of-code?utm_source=github.com&utm_medium=referral&utm_content=30-seconds/30-seconds-of-code&utm_campaign=Badge_Grade) [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/Flet/semistandard) <br/>
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![ProductHunt](https://img.shields.io/badge/producthunt-vote-orange.svg)](https://www.producthunt.com/posts/30-seconds-of-code) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
@@ -11,7 +11,7 @@
 * Use <kbd>Ctrl</kbd> + <kbd>F</kbd> or <kbd>command</kbd> + <kbd>F</kbd> to search for a snippet.
 * Contributions welcome, please read the [contribution guide](CONTRIBUTING.md).
 * Snippets are written in ES6, use the [Babel transpiler](https://babeljs.io/) to ensure backwards-compatibility.
-* You can import these snippets into VSCode, by following the instructions found [here](https://github.com/30-seconds/30-seconds-of-code/tree/master/vscode_snippets).
+* You can import these snippets into VSCode, by following the instructions found [here](https://github.com/WYseven/30-seconds-of-code/tree/master/vscode_snippets).
 * You can search, view and copy these snippets from a terminal, using the CLI application from [this repo](https://github.com/sQVe/30s).
 * If you want to follow 30-seconds-of-code on social media, you can find us on [Facebook](https://www.facebook.com/30secondsofcode), [Instagram](https://www.instagram.com/30secondsofcode) and [Twitter](https://twitter.com/30secondsofcode).
 
@@ -518,6 +518,12 @@ Creates a function that accepts up to `n` arguments, ignoring any additional arg
 
 Call the provided function, `fn`, with up to `n` arguments, using `Array.prototype.slice(0,n)` and the spread operator (`...`).
 
+
+创建一个函数，该函数接受最多 `n` 个参数，忽略任何其他参数。
+
+调用提供的函数 `fn`，参数最多为 `n`个，使用 `Array.prototype.slice(0,n)` 和 spread 操作符(`...`)提取并传入参数。
+
+
 ```js
 const ary = (fn, n) => (...args) => fn(...args.slice(0, n));
 ```
@@ -539,6 +545,10 @@ const firstTwoMax = ary(Math.max, 2);
 Given a key and a set of arguments, call them when given a context. Primarily useful in composition.
 
 Use a closure to call a stored key with stored arguments.
+
+给定一个 `key` 和一组参数，在给定上下文时调用它们。主要用于函数组合。
+
+使用闭包以存储的参数调用存储的 `key`。
 
 ```js
 const call = (key, ...args) => context => context[key](...args);
@@ -566,6 +576,10 @@ Promise.resolve([1, 2, 3])
 Changes a function that accepts an array into a variadic function.
 
 Given a function, return a closure that collects all inputs into an array-accepting function.
+
+将接受数组的函数改变为接收可变参数函数。
+
+给定一个函数，返回一个闭包，该闭包将所有输入收集到一个接受数组的函数中。
 
 ```js
 const collectInto = fn => (...args) => fn(args);
@@ -820,10 +834,12 @@ const unary = fn => val => fn(val);
 
 ### all
 
-Returns `true` if the provided predicate function returns `true` for all elements in a collection, `false` otherwise.
 
-Use `Array.prototype.every()` to test if all elements in the collection return `true` based on `fn`.
-Omit the second argument, `fn`, to use `Boolean` as a default.
+
+如果提供的断言函数（predicate function）对集合中所有的元素测试都返回 `true`，那么 `all` 方法就返回 `true`。否则，返回 `false`。
+
+使用 `Array.prototype.every()` 测试集合中的所有元素是否基于 `fn` 返回 `true`。
+省略第二个参数`fn`，使用 `Boolean` 作为默认值。
 
 ```js
 const all = (arr, fn = Boolean) => arr.every(fn);
@@ -843,10 +859,12 @@ all([1, 2, 3]); // true
 
 ### allEqual
 
-Check if all elements in an array are equal.
 
-Use `Array.prototype.every()` to check if all the elements of the array are the same as the first one.
-Elements in the array are compared using the strict comparison operator, which does not account for `NaN` self-inequality.
+
+检查数组中的所有元素是否相等。
+
+使用 `Array.prototype.every()` 检查数组中的所有元素是否与第一个元素相同。
+使用严格比较运算符比较数组中的元素，该运算符不考虑 `NaN` 与自己不相等的情况。
 
 ```js
 const allEqual = arr => arr.every(val => val === arr[0]);
@@ -866,10 +884,12 @@ allEqual([1, 1, 1, 1]); // true
 
 ### any
 
-Returns `true` if the provided predicate function returns `true` for at least one element in a collection, `false` otherwise.
 
-Use `Array.prototype.some()` to test if any elements in the collection return `true` based on `fn`.
-Omit the second argument, `fn`, to use `Boolean` as a default.
+
+如果提供的断言函数（predicate function）对集合中所有的元素测试，至少有一个返回 `true`，那么 `any` 方法就返回 `true`。否则，返回 `false`。
+
+使用 `Array.prototype.some()` 测试集合中的所有元素是否基于 `fn` 返回 `true`。
+省略第二个参数`fn`，使用 `Boolean` 作为默认值。
 
 ```js
 const any = (arr, fn = Boolean) => arr.some(fn);
@@ -889,11 +909,13 @@ any([0, 0, 1, 0]); // true
 
 ### arrayToCSV
 
-Converts a 2D array to a comma-separated values (CSV) string.
 
-Use `Array.prototype.map()` and `Array.prototype.join(delimiter)` to combine individual 1D arrays (rows) into strings.
-Use `Array.prototype.join('\n')` to combine all rows into a CSV string, separating each row with a newline.
-Omit the second argument, `delimiter`, to use a default delimiter of `,`.
+
+将二维数组转换为逗号分隔值（CSV）字符串。
+
+使用 `Array.prototype.map()` 和 `Array.prototype.join(delimiter)` 将单个一维数组(行)组合成字符串。
+使用 `Array.prototype.join('\n')` 将所有行组合成 CSV 字符串，用换行符分隔每一行。
+省略第二个参数 `delimiter` ，以使用'，'的默认分隔符。
 
 ```js
 const arrayToCSV = (arr, delimiter = ',') =>
@@ -917,9 +939,11 @@ arrayToCSV([['a', '"b" great'], ['c', 3.1415]]); // '"a","""b"" great"\n"c",3.14
 
 ### bifurcate
 
-Splits values into two groups. If an element in `filter` is truthy, the corresponding element in the collection belongs to the first group; otherwise, it belongs to the second group.
 
-Use `Array.prototype.reduce()` and `Array.prototype.push()` to add elements to groups, based on `filter`.
+
+将值分成两组，如果 `filter` 中的元素为 `true`，则集合中对应的元素属于第一组;否则，它属于第二组。
+
+基于 `filter`，使用 `Array.prototype.reduce()` 和 `Array.prototype.push()` 向组添加元素。
 
 ```js
 const bifurcate = (arr, filter) =>
@@ -939,9 +963,9 @@ bifurcate(['beep', 'boop', 'foo', 'bar'], [true, true, false, true]); // [ ['bee
 
 ### bifurcateBy
 
-Splits values into two groups according to a predicate function, which specifies which group an element in the input collection belongs to. If the predicate function returns a truthy value, the collection element belongs to the first group; otherwise, it belongs to the second group.
 
-Use `Array.prototype.reduce()` and `Array.prototype.push()` to add elements to groups, based on the value returned by `fn` for each element.
+
+根据断言函数（predicate function）会将值分成两组，集合中的元素输入到断言函数中后，来确定元素属于哪一组。如果断言函数返回一个真值，则集合元素属于第一组;否则，它属于第二组。
 
 ```js
 const bifurcateBy = (arr, fn) =>
@@ -961,11 +985,13 @@ bifurcateBy(['beep', 'boop', 'foo', 'bar'], x => x[0] === 'b'); // [ ['beep', 'b
 
 ### chunk
 
-Chunks an array into smaller arrays of a specified size.
 
-Use `Array.from()` to create a new array, that fits the number of chunks that will be produced.
-Use `Array.prototype.slice()` to map each element of the new array to a chunk the length of `size`.
-If the original array can't be split evenly, the final chunk will contain the remaining elements.
+
+将数组分块成指定大小的较小数组。
+
+使用 `array.from()` 创建一个新的数组，该数组的长度就是将要生成的块（chunk）的个数。
+使用 `array.prototype.slice()` 将新数组的每个元素映射为一个长度为 `size` 的块（chunk）。
+如果原始数组不能被平均分割，那么最后的块（chunk）将包含剩余的元素。
 
 ```js
 const chunk = (arr, size) =>
@@ -987,9 +1013,11 @@ chunk([1, 2, 3, 4, 5], 2); // [[1,2],[3,4],[5]]
 
 ### compact
 
-Removes falsy values from an array.
 
-Use `Array.prototype.filter()` to filter out falsy values (`false`, `null`, `0`, `""`, `undefined`, and `NaN`).
+
+从数组中删除为 `false` 的值。
+
+使用 `Array.prototype.filter()` 过滤掉数组中所有为假值的元素 (`false`, `null`, `0`, `""`, `undefined`, 和 `NaN`)。
 
 ```js
 const compact = arr => arr.filter(Boolean);
@@ -1008,10 +1036,12 @@ compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34]); // [ 1, 2, 3, 'a'
 
 ### countBy
 
-Groups the elements of an array based on the given function and returns the count of elements in each group.
 
-Use `Array.prototype.map()` to map the values of an array to a function or property name.
-Use `Array.prototype.reduce()` to create an object, where the keys are produced from the mapped results.
+
+根据给定函数对数组的元素进行分组，并返回每个组中的元素数量。
+
+使用 `array .prototype.map()` 将数组的值映射到函数或属性名称。
+使用 `Array.prototype.reduce()` 创建一个对象，其中键（`key`）是从映射的结果中产生的。
 
 ```js
 const countBy = (arr, fn) =>
@@ -1035,9 +1065,11 @@ countBy(['one', 'two', 'three'], 'length'); // {3: 2, 5: 1}
 
 ### countOccurrences
 
-Counts the occurrences of a value in an array.
 
-Use `Array.prototype.reduce()` to increment a counter each time you encounter the specific value inside the array.
+
+计算数组中值的出现次数。
+
+每次在数组中遇到指定的值时，使用 `array. prototype.reduce()` 递增计数器。
 
 ```js
 const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
@@ -1056,11 +1088,13 @@ countOccurrences([1, 1, 2, 1, 2, 3], 1); // 3
 
 ### deepFlatten
 
-Deep flattens an array.
 
-Use recursion.
-Use `Array.prototype.concat()` with an empty array (`[]`) and the spread operator (`...`) to flatten an array.
-Recursively flatten each element that is an array.
+
+深度平铺一个数组。
+
+使用递归。
+使用 `array. prototype.concat()` 和空数组( `[]` )，结合 spread 操作符('...')将数组平铺。
+递归平铺数组中的每个元素。
 
 ```js
 const deepFlatten = arr => [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)));
@@ -1079,9 +1113,11 @@ deepFlatten([1, [2], [[3], 4], 5]); // [1,2,3,4,5]
 
 ### difference
 
-Returns the difference between two arrays.
 
-Create a `Set` from `b`, then use `Array.prototype.filter()` on `a` to only keep values not contained in `b`.
+
+返回两个数组之间的差异。
+
+根据数组 `b` 创建一个 `Set` 对象，然后在数组 `a` 上使用 `Array.filter()` 方法，过滤出数组 `b` 中不包含的值。
 
 ```js
 const difference = (a, b) => {
@@ -1103,9 +1139,11 @@ difference([1, 2, 3], [1, 2, 4]); // [3]
 
 ### differenceBy
 
-Returns the difference between two arrays, after applying the provided function to each array element of both.
 
-Create a `Set` by applying `fn` to each element in `b`, then use `Array.prototype.map()` to apply `fn` to each element in `a`, then `Array.prototype.filter()`
+
+将提供的函数应用于两个数组的每个数组元素后，返回两个数组之间的差值。
+
+将 `fn` 处理数组 `b` 中的每个元素后创建 `Set`，然后使用 `Array.prototype.map（）` 映射 `fn` 处理数组 `a` 中的每个元素，最后应用`Array.prototype.filter（）` 进行过滤。
 
 ```js
 const differenceBy = (a, b, fn) => {
@@ -1128,9 +1166,11 @@ differenceBy([{ x: 2 }, { x: 1 }], [{ x: 1 }], v => v.x); // [2]
 
 ### differenceWith
 
-Filters out all values from an array for which the comparator function does not return `true`.
 
-Use `Array.prototype.filter()` and `Array.prototype.findIndex()` to find the appropriate values.
+
+过滤出数组中比较函数不返回 `true` 的所有值。
+
+使用 `Array.prototype.filter()` 和 `Array.prototype.findIndex()` 查找合适的值。
 
 ```js
 const differenceWith = (arr, val, comp) => arr.filter(a => val.findIndex(b => comp(a, b)) === -1);
@@ -1149,9 +1189,11 @@ differenceWith([1, 1.2, 1.5, 3, 0], [1.9, 3, 0], (a, b) => Math.round(a) === Mat
 
 ### drop
 
-Returns a new array with `n` elements removed from the left.
 
-Use `Array.prototype.slice()` to remove the specified number of elements from the left.
+
+返回从左侧开始删除 `n` 个元素的新数组。
+
+使用 `Array.prototype.slice()` 从左边删除指定数量的元素。
 
 ```js
 const drop = (arr, n = 1) => arr.slice(n);
@@ -1172,9 +1214,11 @@ drop([1, 2, 3], 42); // []
 
 ### dropRight
 
-Returns a new array with `n` elements removed from the right.
 
-Use `Array.prototype.slice()` to remove the specified number of elements from the right.
+
+返回从右侧开始删除 `n` 个元素的新数组。
+
+使用 `Array.prototype.slice()` 从右侧删除指定数量的元素。
 
 ```js
 const dropRight = (arr, n = 1) => arr.slice(0, -n);
@@ -1195,10 +1239,12 @@ dropRight([1, 2, 3], 42); // []
 
 ### dropRightWhile
 
-Removes elements from the end of an array until the passed function returns `true`. Returns the remaining elements in the array.
 
-Loop through the array, using `Array.prototype.slice()` to drop the last element of the array until the returned value from the function is `true`.
-Returns the remaining elements.
+
+从数组末尾移除元素，直到传递的函数返回 `true` 。返回数组中剩余的元素。
+
+从数组的末尾开始循环遍历数组，使用 `array.prototype.slice()` 删除数组中第一个遇到函数返回的值为 `true` 位置的元素。
+返回数组中剩余的元素。
 
 ```js
 const dropRightWhile = (arr, func) => {
@@ -1221,10 +1267,12 @@ dropRightWhile([1, 2, 3, 4], n => n < 3); // [1, 2]
 
 ### dropWhile
 
-Removes elements in an array until the passed function returns `true`. Returns the remaining elements in the array.
 
-Loop through the array, using `Array.prototype.slice()` to drop the first element of the array until the returned value from the function is `true`.
-Returns the remaining elements.
+
+移除数组中的元素，直到传递的函数返回 `true` 。 返回数组中剩余的元素。
+
+循环遍历数组，使用 `array.prototype.slice()` 删除数组中第一个遇到函数返回的值为 `true` 位置的元素。
+返回数组中剩余的元素。
 
 ```js
 const dropWhile = (arr, func) => {
@@ -1250,6 +1298,8 @@ Returns every nth element in an array.
 
 Use `Array.prototype.filter()` to create a new array that contains every nth element of a given array.
 
+
+
 ```js
 const everyNth = (arr, nth) => arr.filter((e, i) => i % nth === nth - 1);
 ```
@@ -1267,9 +1317,17 @@ everyNth([1, 2, 3, 4, 5, 6], 2); // [ 2, 4, 6 ]
 
 ### filterFalsy
 
+------------
+
 Filters out the falsy values in an array.
 
 Use `Array.prototype.filter()` to get an array containing only truthy values.
+
+------------
+
+过滤数组中为假值（falsy）的元素。
+
+使用 `array .prototype.filter()` 过滤后，数组中只包含为真值（truthy）的元素。
 
 ```js
 const filterFalsy = arr => arr.filter(Boolean);
@@ -1288,9 +1346,11 @@ filterFalsy(['', true, {}, false, 'sample', 1, 0]); // [true, {}, 'sample', 1]
 
 ### filterNonUnique
 
-Filters out the non-unique values in an array.
 
-Use `Array.prototype.filter()` for an array containing only the unique values.
+
+过滤掉数组中的非唯一值。
+
+使用 `Array.prototype.filter()` 过滤非唯一值后，返回只包含唯一值的数组。
 
 ```js
 const filterNonUnique = arr => arr.filter(i => arr.indexOf(i) === arr.lastIndexOf(i));
@@ -1309,10 +1369,13 @@ filterNonUnique([1, 2, 2, 3, 4, 4, 5]); // [1, 3, 5]
 
 ### filterNonUniqueBy
 
-Filters out the non-unique values in an array, based on a provided comparator function.
 
-Use `Array.prototype.filter()` and `Array.prototype.every()` for an array containing only the unique values, based on the comparator function, `fn`.
-The comparator function takes four arguments: the values of the two elements being compared and their indexes.
+
+根据提供的比较器（comparator）函数，过滤数组中的非唯一值。
+
+基于比较器函数 `fn` ，使用 `array .prototype.filter()` 和 `array .prototype.every()` 对数组过滤后，数组中只包含唯一值。
+
+比较器函数接受四个参数:正在比较的两个元素的值及其索引。
 
 ```js
 const filterNonUniqueBy = (arr, fn) =>
@@ -1341,9 +1404,11 @@ filterNonUniqueBy(
 
 ### findLast
 
-Returns the last element for which the provided function returns a truthy value.
 
-Use `Array.prototype.filter()` to remove elements for which `fn` returns falsy values, `Array.prototype.pop()` to get the last one.
+
+通过提供的函数返回值为真值（truthy）过滤数组，返回这个数组最后一个元素。
+
+使用 `Array.prototype.filter()` 过滤掉 `fn` 返回假值（falsy）的元素， 用 `Array.prototype.pop()` 获取最后一个值。
 
 ```js
 const findLast = (arr, fn) => arr.filter(fn).pop();
@@ -1362,10 +1427,12 @@ findLast([1, 2, 3, 4], n => n % 2 === 1); // 3
 
 ### findLastIndex
 
-Returns the index of the last element for which the provided function returns a truthy value.
 
-Use `Array.prototype.map()` to map each element to an array with its index and value.
-Use `Array.prototype.filter()` to remove elements for which `fn` returns falsy values, `Array.prototype.pop()` to get the last one.
+
+通过提供的函数返回值为真值（truthy）过滤数组，返回这个数组最后一个元素的下标。
+
+使用 `array.prototype.map()` 将每个元素映射到具有其索引和值的数组。
+使用 `Array.prototype.filter()` 过滤掉 `fn` 返回假值（falsy）的元素， 用 `Array.prototype.pop()` 获取最后一个值。
 
 ```js
 const findLastIndex = (arr, fn) =>
@@ -1388,12 +1455,11 @@ findLastIndex([1, 2, 3, 4], n => n % 2 === 1); // 2 (index of the value 3)
 
 ### flatten
 
-Flattens an array up to the specified depth.
 
-Use recursion, decrementing `depth` by 1 for each level of depth.
-Use `Array.prototype.reduce()` and `Array.prototype.concat()` to merge elements or arrays.
-Base case, for `depth` equal to `1` stops recursion.
-Omit the second argument, `depth` to flatten only to a depth of `1` (single flatten).
+
+将数组展平到指定的深度。
+
+使用递归，为每个深度级别 `depth` 递减 `1`。 使用 `Array.prototype.reduce()` 和 `Array.prototype.concat()` 来合并元素或数组。 基本情况下，`depth` 等于 `1` 停止递归。 省略第二个参数，`depth` 只能平铺到 `1` 层(单层平铺) 的深度。
 
 ```js
 const flatten = (arr, depth = 1) =>
@@ -1414,9 +1480,11 @@ flatten([1, [2, [3, [4, 5], 6], 7], 8], 2); // [1, 2, 3, [4, 5], 6, 7, 8]
 
 ### forEachRight
 
-Executes a provided function once for each array element, starting from the array's last element.
 
-Use `Array.prototype.slice(0)` to clone the given array, `Array.prototype.reverse()` to reverse it and `Array.prototype.forEach()` to iterate over the reversed array.
+
+从数组的最后一个元素开始，为每个数组元素执行一次提供的函数。
+
+使用 `Array.prototype.slice(0)` 克隆给定的数组，`Array.prototype.reverse()` 反转数组，`Array.prototype.forEach()` 遍历这个反转的数组。
 
 ```js
 const forEachRight = (arr, callback) =>
@@ -1439,10 +1507,11 @@ forEachRight([1, 2, 3, 4], val => console.log(val)); // '4', '3', '2', '1'
 
 ### groupBy
 
-Groups the elements of an array based on the given function.
 
-Use `Array.prototype.map()` to map the values of an array to a function or property name.
-Use `Array.prototype.reduce()` to create an object, where the keys are produced from the mapped results.
+
+根据给定的函数对数组的元素进行分组。
+
+使用 `Array.prototype.map()` 将数组的值映射到函数或属性名称。使用 `Array.prototype.reduce()` 来创建一个对象，其中的 `key` 是从映射结果中产生。
 
 ```js
 const groupBy = (arr, fn) =>
@@ -1466,9 +1535,11 @@ groupBy(['one', 'two', 'three'], 'length'); // {3: ['one', 'two'], 5: ['three']}
 
 ### head
 
-Returns the head of a list.
 
-Use `arr[0]` to return the first element of the passed array.
+
+返回数组的第一个元素。
+
+使用 `arr[0]` 返回传递数组的第一个元素。
 
 ```js
 const head = arr => arr[0];
@@ -1487,11 +1558,12 @@ head([1, 2, 3]); // 1
 
 ### indexOfAll
 
-Returns all indices of `val` in an array.
-If `val` never occurs, returns `[]`.
 
-Use `Array.prototype.reduce()` to loop over elements and store indices for matching elements.
-Return the array of indices.
+
+返回数组中 `val` 的所有索引。如果在数组中没找到 `val`，则返回 `[]` 。
+
+使用 `Array.prototype.reduce()` 循环元素并存储匹配元素的索引。
+返回索引数组。
 
 ```js
 const indexOfAll = (arr, val) => arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), []);
@@ -1511,9 +1583,11 @@ indexOfAll([1, 2, 3], 4); // []
 
 ### initial
 
-Returns all the elements of an array except the last one.
 
-Use `arr.slice(0,-1)` to return all but the last element of the array.
+
+返回数组中除最后一个元素外的所有元素。
+
+使用 `arr.slice(0，-1)` 返回数组中除最后一个元素外的所有元素。
 
 ```js
 const initial = arr => arr.slice(0, -1);
@@ -1532,9 +1606,12 @@ initial([1, 2, 3]); // [1,2]
 
 ### initialize2DArray
 
-Initializes a 2D array of given width and height and value.
 
-Use `Array.prototype.map()` to generate h rows where each is a new array of size w initialize with value. If the value is not provided, default to `null`.
+
+初始化一个给定行数和列数，以及值的二维数组。
+
+使用 `array.prototype.map()` 生成 `h` 行，其中每一行都是长度为 `w` 的新数组。如果没有提供值 `val`，则默认为 `null`。
+
 
 ```js
 const initialize2DArray = (w, h, val = null) =>
@@ -1554,11 +1631,13 @@ initialize2DArray(2, 2, 0); // [[0,0], [0,0]]
 
 ### initializeArrayWithRange
 
-Initializes an array containing the numbers in the specified range where `start` and `end` are inclusive with their common difference `step`.
 
-Use `Array.from()` to create an array of the desired length, `(end - start + 1)/step`, and a map function to fill it with the desired values in the given range.
-You can omit `start` to use a default value of `0`.
-You can omit `step` to use a default value of `1`.
+
+初始化一个数组，该数组包含指定范围 `start` 到 `end` 内的数字，可设置间隔 `step`。
+
+使用 `Array.from()` 创建一个所需长度为 `(end - start + 1)/step` 的数组，并填充给定范围内要求的值。
+你可以省略 `start` 来使用默认值 `0`。 
+你可以省略 `step` 使用默认值 `1`。
 
 ```js
 const initializeArrayWithRange = (end, start = 0, step = 1) =>
@@ -1579,12 +1658,12 @@ initializeArrayWithRange(9, 0, 2); // [0,2,4,6,8]
 <br>[⬆ Back to top](#contents)
 
 ### initializeArrayWithRangeRight
+[待翻译]
 
-Initializes an array containing the numbers in the specified range (in reverse) where `start` and `end` are inclusive with their common difference `step`.
 
-Use `Array.from(Math.ceil((end+1-start)/step))` to create an array of the desired length(the amounts of elements is equal to `(end-start)/step` or `(end+1-start)/step` for inclusive end), `Array.prototype.map()` to fill with the desired values in a range.
-You can omit `start` to use a default value of `0`.
-You can omit `step` to use a default value of `1`.
+初始化一个数组，该数组包含指定范围 `start` 到 `end` 内的数字（反向），可设置间隔 `step`。
+
+使用 `array.from(Math.ceil((end+1-start)/step)` 来创建所需长度的数组(元素的数量等于 `(end-start)/step` 或 `(end+1-start)/step` ，包含结束数字)， 使用 `array.prototype.map()` 来填充范围中所需要的值。
 
 ```js
 const initializeArrayWithRangeRight = (end, start = 0, step = 1) =>
@@ -1608,10 +1687,12 @@ initializeArrayWithRangeRight(9, 0, 2); // [8,6,4,2,0]
 
 ### initializeArrayWithValues
 
-Initializes and fills an array with the specified values.
 
-Use `Array(n)` to create an array of the desired length, `fill(v)` to fill it with the desired values.
-You can omit `val` to use a default value of `0`.
+
+使用指定的值初始化和填充数组。
+
+使用 `Array(n)` 创建所需长度的数组，使用 `fill(v)` 填充所需的值。 你可以忽略 `val` ，使用默认值 `0`。
+
 
 ```js
 const initializeArrayWithValues = (n, val = 0) => Array(n).fill(val);
@@ -1630,10 +1711,12 @@ initializeArrayWithValues(5, 2); // [2, 2, 2, 2, 2]
 
 ### initializeNDArray
 
-Create a n-dimensional array with given value.
 
-Use recursion.
-Use `Array.prototype.map()` to generate rows where each is a new array initialized using `initializeNDArray`.
+
+创建一个具有给定值的 `n` 维数组。
+
+使用递归。
+使用 `array.prototype.map()` 生成行，其中每个行都是使用 `initializeNDArray` 初始化的新数组。
 
 ```js
 const initializeNDArray = (val, ...args) =>
@@ -1656,9 +1739,11 @@ initializeNDArray(5, 2, 2, 2); // [[[5,5],[5,5]],[[5,5],[5,5]]]
 
 ### intersection
 
-Returns a list of elements that exist in both arrays.
 
-Create a `Set` from `b`, then use `Array.prototype.filter()` on `a` to only keep values contained in `b`.
+
+返回两个数组中都存在的元素列表。
+
+根据数组 `b` 创建一个 `Set` 对象，然后在数组 `a` 上使用 `Array.prototype.filter()` 方法，只保留数组 `b` 中也包含的值。
 
 ```js
 const intersection = (a, b) => {
@@ -1680,9 +1765,11 @@ intersection([1, 2, 3], [4, 3, 2]); // [2, 3]
 
 ### intersectionBy
 
-Returns a list of elements that exist in both arrays, after applying the provided function to each array element of both.
 
-Create a `Set` by applying `fn` to all elements in `b`, then use `Array.prototype.filter()` on `a` to only keep elements, which produce values contained in `b` when `fn` is applied to them.
+
+将提供的函数应用于两个数组的每个数组元素后，返回两个数组中存在的元素列表。
+
+将 `fn` 应用于 `b` 中的所有元素来创建 `Set` 对象 ，然后在 `a` 上使用 `Array.prototype.filter()`，只保留调用 `fn` 应用于每个元素后，同时在 `b` 中存在的元素。
 
 ```js
 const intersectionBy = (a, b, fn) => {
@@ -1704,9 +1791,11 @@ intersectionBy([2.1, 1.2], [2.3, 3.4], Math.floor); // [2.1]
 
 ### intersectionWith
 
-Returns a list of elements that exist in both arrays, using a provided comparator function.
 
-Use `Array.prototype.filter()` and `Array.prototype.findIndex()` in combination with the provided comparator to determine intersecting values.
+
+使用提供的比较器（comparator）函数，返回两个数组中存在的元素列表。
+
+使用 `Array.prototype.filter()` 和 `Array.prototype.findIndex()` 结合比较器（comparator）函数来确定交叉值。
 
 ```js
 const intersectionWith = (a, b, comp) => a.filter(x => b.findIndex(y => comp(x, y)) !== -1);
@@ -1725,11 +1814,13 @@ intersectionWith([1, 1.2, 1.5, 3, 0], [1.9, 3, 0, 3.9], (a, b) => Math.round(a) 
 
 ### isSorted
 
-Returns `1` if the array is sorted in ascending order, `-1` if it is sorted in descending order or `0` if it is not sorted.
 
-Calculate the ordering `direction` for the first two elements.
-Use `Object.entries()` to loop over array objects and compare them in pairs.
-Return `0` if the `direction` changes or the `direction` if the last element is reached.
+
+如果数组按升序排序，返回 `1` ;如果按降序排序，返回 `-1` ;如果没有排序，返回 `0` 。
+
+计算前两个元素的顺序 `direction`。
+使用 `Object.entries()` 对数组对象进行循环并对它们进行比较。
+如果 `direction` 改变了，返回 `0`;如果循环直到最后一个元素，`direction` 没有改变，则返回 `direction`。
 
 ```js
 const isSorted = arr => {
@@ -1757,12 +1848,11 @@ isSorted([4, 3, 5]); // 0
 
 ### join
 
-Joins all elements of an array into a string and returns this string.
-Uses a separator and an end separator.
 
-Use `Array.prototype.reduce()` to combine elements into a string.
-Omit the second argument, `separator`, to use a default separator of `','`.
-Omit the third argument, `end`, to use the same value as `separator` by default.
+
+将数组的所有元素拼接成一个字符串并返回此字符串。 使用分隔符和结束分隔符。
+
+使用 `Array.prototype.reduce()` 将元素拼接成一个字符串。 省略第二个参数 `separator` ，则默认使用分隔符','。 省略第三个参数 `end` ，默认使用与 `separator` 相同的值。
 
 ```js
 const join = (arr, separator = ',', end = separator) =>
@@ -1792,12 +1882,14 @@ join(['pen', 'pineapple', 'apple', 'pen']); // "pen,pineapple,apple,pen"
 
 ### JSONtoCSV ![advanced](/advanced.svg)
 
-Converts an array of objects to a comma-separated values (CSV) string that contains only the `columns` specified.
 
-Use `Array.prototype.join(delimiter)` to combine all the names in `columns` to create the first row.
-Use `Array.prototype.map()` and `Array.prototype.reduce()` to create a row for each object, substituting non-existent values with empty strings and only mapping values in `columns`.
-Use `Array.prototype.join('\n')` to combine all rows into a string.
-Omit the third argument, `delimiter`, to use a default delimiter of `,`.
+
+将对象数组转换为仅包含指定的 `columns` 的逗号分隔值(CSV)字符串。
+
+使用 `Array.prototype.join(delimiter)` 结合 `columns` 中的所有名称以创建第一行。
+使用 `Array.prototype.map()` 和 `Array.prototype.reduce()` 为每个对象创建一行映射到 `columns` 中的值，用空字符串替换不存在的值。
+使用 `Array.prototype.join('\n')` 将所有行组合成一个字符串。
+省略第三个参数 `delimiter` ，使用 `,` 为默认的分隔符。
 
 ```js
 const JSONtoCSV = (arr, columns, delimiter = ',') =>
@@ -1826,9 +1918,11 @@ JSONtoCSV([{ a: 1, b: 2 }, { a: 3, b: 4, c: 5 }, { a: 6 }, { b: 7 }], ['a', 'b']
 
 ### last
 
-Returns the last element in an array.
 
-Use `arr.length - 1` to compute the index of the last element of the given array and returning it.
+
+返回数组中的最后一个元素。
+
+使用 `arr.length - 1` 来计算给定数组的最后一个元素的索引并返回。
 
 ```js
 const last = arr => arr[arr.length - 1];
@@ -1847,11 +1941,13 @@ last([1, 2, 3]); // 3
 
 ### longestItem
 
-Takes any number of iterable objects or objects with a `length` property and returns the longest one.
-If multiple objects have the same length, the first one will be returned.
-Returns `undefined` if no arguments are provided.
 
-Use `Array.prototype.reduce()`, comparing the `length` of objects to find the longest one.
+
+获取任何数量的可迭代对象或具有 `length` 属性的对象，并返回其中长度最长的一个。
+如果多个对象具有相同的长度，则返回第一个对象。
+如果没有提供参数，则返回 `undefined` 。
+
+使用 `Array.prototype.reduce()` ，比较对象的 `length` 以找到长度最长的对象。
 
 ```js
 const longestItem = (...vals) => vals.reduce((a, x) => (x.length > a.length ? x : a));
@@ -1874,9 +1970,11 @@ longestItem([1, 2, 3], 'foobar'); // 'foobar'
 
 ### mapObject ![advanced](/advanced.svg)
 
-Maps the values of an array to an object using a function, where the key-value pairs consist of the stringified value as the key and the mapped value.
 
-Use an anonymous inner function scope to declare an undefined memory space, using closures to store a return value. Use a new `Array` to store the array with a map of the function over its data set and a comma operator to return a second step, without needing to move from one context to another (due to closures and order of operations).
+
+使用一个函数将数组的值映射到对象，在键值对中，原始值作为键，映射值作为值。
+
+使用一个匿名的内部函数作用域来声明一个 undefined 的内存空间，使用闭包来存储返回值。 使用一个新的 `Array` 来存储带有函数映射的数组和一个逗号运算符来返回第二个步骤，而不需要从一个上下文移动到另一个上下文（由于闭包和操作顺序）。
 
 ```js
 const mapObject = (arr, fn) =>
@@ -1899,12 +1997,14 @@ squareIt([1, 2, 3]); // { 1: 1, 2: 4, 3: 9 }
 
 ### maxN
 
-Returns the `n` maximum elements from the provided array.
-If `n` is greater than or equal to the provided array's length, then return the original array (sorted in descending order).
 
-Use `Array.prototype.sort()` combined with the spread operator (`...`) to create a shallow clone of the array and sort it in descending order.
-Use `Array.prototype.slice()` to get the specified number of elements.
-Omit the second argument, `n`, to get a one-element array.
+
+从提供的数组中返回 `n` 个最大值元素。
+如果 `n` 大于或等于提供的数组长度，则返回原始数组(按降序排列)。
+
+使用 `array.prototype.sort()` 和 展开操作符 (`...`) 对数组进行浅克隆，并按降序排序。
+使用 `Array.prototype.slice()` 获取指定数量的元素。
+省略第二个参数 `n` ，获得只有一个元素的数组。
 
 ```js
 const maxN = (arr, n = 1) => [...arr].sort((a, b) => b - a).slice(0, n);
@@ -1924,12 +2024,14 @@ maxN([1, 2, 3], 2); // [3,2]
 
 ### minN
 
-Returns the `n` minimum elements from the provided array.
-If `n` is greater than or equal to the provided array's length, then return the original array (sorted in ascending order).
 
-Use `Array.prototype.sort()` combined with the spread operator (`...`) to create a shallow clone of the array and sort it in ascending order.
-Use `Array.prototype.slice()` to get the specified number of elements.
-Omit the second argument, `n`, to get a one-element array.
+
+从提供的数组中返回 `n` 个最小值元素。
+如果 `n` 大于或等于提供的数组长度，则返回原始数组(按升序排列)。
+
+使用 `array.prototype.sort()` 和 展开操作符 (`...`) 对数组进行浅克隆，并按升序排序。
+使用 `Array.prototype.slice()` 获取指定数量的元素。
+省略第二个参数 `n` ，获得只有一个元素的数组。
 
 ```js
 const minN = (arr, n = 1) => [...arr].sort((a, b) => a - b).slice(0, n);
@@ -1949,10 +2051,12 @@ minN([1, 2, 3], 2); // [1,2]
 
 ### none
 
-Returns `true` if the provided predicate function returns `false` for all elements in a collection, `false` otherwise.
 
-Use `Array.prototype.some()` to test if any elements in the collection return `true` based on `fn`.
-Omit the second argument, `fn`, to use `Boolean` as a default.
+
+如果提供的断言（predicate）函数处理集合中的所有元素都返回 `false` ，则返回 `true` ，否则返回 `false` 。
+
+使用 `Array.prototype.some()` 测试集合中的任何元素是否基于 `fn` 返回 `true` 。
+省略第二个参数 `fn` ，使用 `Boolean` 作为默认值。
 
 ```js
 const none = (arr, fn = Boolean) => !arr.some(fn);
@@ -1972,11 +2076,13 @@ none([0, 0, 0]); // true
 
 ### nthElement
 
-Returns the nth element of an array.
 
-Use `Array.prototype.slice()` to get an array containing the nth element at the first place.
-If the index is out of bounds, return `undefined`.
-Omit the second argument, `n`, to get the first element of the array.
+
+返回数组的第 `n` 个元素。
+
+使用 `array .prototype.slice()` 首先获得一个包含第 n 个元素的数组。
+如果索引超出界限，返回 `undefined` 。
+省略第二个参数 `n` ，获得数组的第一个元素。
 
 ```js
 const nthElement = (arr, n = 0) => (n === -1 ? arr.slice(n) : arr.slice(n, n + 1))[0];
@@ -1996,11 +2102,13 @@ nthElement(['a', 'b', 'b'], -3); // 'a'
 
 ### offset
 
-Moves the specified amount of elements to the end of the array.
 
-Use `Array.prototype.slice()` twice to get the elements after the specified index and the elements before that.
-Use the spread operator(`...`) to combine the two into one array.
-If `offset` is negative, the elements will be moved from end to start.
+
+将指定数量的元素移动到数组的末尾。
+
+两次使用 `Array.prototype.slice()` 来获取指定索引之后的元素和指定索引之前的元素。
+使用展开操作符(`...`)将两个数组合成一个数组。
+如果 `offset` 为负数，元素将从结束移动到开始位置。
 
 ```js
 const offset = (arr, offset) => [...arr.slice(offset), ...arr.slice(0, offset)];
@@ -2020,10 +2128,12 @@ offset([1, 2, 3, 4, 5], -2); // [4, 5, 1, 2, 3]
 
 ### partition
 
-Groups the elements into two arrays, depending on the provided function's truthiness for each element.
 
-Use `Array.prototype.reduce()` to create an array of two arrays.
-Use `Array.prototype.push()` to add elements for which `fn` returns `true` to the first array and elements for which `fn` returns `false` to the second one.
+
+根据提供的函数对每个元素进行迭代，将元素分组为两个数组。
+
+使用 `array.prototype.reduce()` 创建一个由两个数组组成的数组。
+使用 `array.prototype.push()` 将 `fn` 返回 `true` 的元素添加到第一个数组，而 `fn` 返回 `false` 的元素添加到第二个数组。
 
 ```js
 const partition = (arr, fn) =>
@@ -2085,12 +2195,14 @@ permutations([1, 33, 5]); // [ [ 1, 33, 5 ], [ 1, 5, 33 ], [ 33, 1, 5 ], [ 33, 5
 
 ### pull
 
-Mutates the original array to filter out the values specified.
 
-Use `Array.prototype.filter()` and `Array.prototype.includes()` to pull out the values that are not needed.
-Use `Array.prototype.length = 0` to mutate the passed in an array by resetting it's length to zero and `Array.prototype.push()` to re-populate it with only the pulled values.
 
-_(For a snippet that does not mutate the original array see [`without`](#without))_
+改变原始数组，过滤掉指定的值。
+
+使用 `Array.prototype.filter()` 和 `array.prototype.include()` 过滤指定的值。
+使用 `Array.prototype.length = 0` 通过将数组的长度重置为0来清空数组，并使用 `array.prototype.push()` 把提取的值重新填充数组。
+
+_(对于不改变原始数组的代码片段，请参阅 [`without`](#without))_
 
 ```js
 const pull = (arr, ...args) => {
@@ -2115,11 +2227,14 @@ pull(myArray, 'a', 'c'); // myArray = [ 'b', 'b' ]
 
 ### pullAtIndex ![advanced](/advanced.svg)
 
-Mutates the original array to filter out the values at the specified indexes.
 
-Use `Array.prototype.filter()` and `Array.prototype.includes()` to pull out the values that are not needed.
-Use `Array.prototype.length = 0` to mutate the passed in an array by resetting it's length to zero and `Array.prototype.push()` to re-populate it with only the pulled values.
-Use `Array.prototype.push()` to keep track of pulled values
+
+改变原始数组，过滤掉指定索引的值。
+
+使用 `Array.prototype.filter()` 和 `array.prototype.include()` 过滤指定的值。
+使用 `Array.prototype.length = 0` 通过将数组的长度重置为0来清空数组，并使用 `array.prototype.push()` 把提取的值重新填充数组。
+使用 `Array.prototype.push()` 跟踪提取的值。
+
 
 ```js
 const pullAtIndex = (arr, pullArr) => {
@@ -2147,11 +2262,13 @@ let pulled = pullAtIndex(myArray, [1, 3]); // myArray = [ 'a', 'c' ] , pulled = 
 
 ### pullAtValue ![advanced](/advanced.svg)
 
-Mutates the original array to filter out the values specified. Returns the removed elements.
 
-Use `Array.prototype.filter()` and `Array.prototype.includes()` to pull out the values that are not needed.
-Use `Array.prototype.length = 0` to mutate the passed in an array by resetting it's length to zero and `Array.prototype.push()` to re-populate it with only the pulled values.
-Use `Array.prototype.push()` to keep track of pulled values
+
+修改原始数组，过滤掉指定的值。返回删除的元素。
+
+使用 `Array.prototype.filter()` 和 `array.prototype.include()` 过滤指定的值。
+使用 `Array.prototype.length = 0` 通过将数组的长度重置为0来清空数组，并使用 `array.prototype.push()` 把提取的值重新填充数组。
+使用 `Array.prototype.push()` 跟踪提取的值。
 
 ```js
 const pullAtValue = (arr, pullArr) => {
@@ -2168,7 +2285,7 @@ const pullAtValue = (arr, pullArr) => {
 <summary>Examples</summary>
 
 ```js
-let myArray = ['a', 'b', 'c', 'd'];
+let myArray = ['a', 'b', 'c', 'a', 'b', 'c'];
 let pulled = pullAtValue(myArray, ['b', 'd']); // myArray = [ 'a', 'c' ] , pulled = [ 'b', 'd' ]
 ```
 
@@ -2178,12 +2295,15 @@ let pulled = pullAtValue(myArray, ['b', 'd']); // myArray = [ 'a', 'c' ] , pulle
 
 ### pullBy ![advanced](/advanced.svg)
 
-Mutates the original array to filter out the values specified, based on a given iterator function.
 
-Check if the last argument provided in a function.
-Use `Array.prototype.map()` to apply the iterator function `fn` to all array elements.
-Use `Array.prototype.filter()` and `Array.prototype.includes()` to pull out the values that are not needed.
-Use `Array.prototype.length = 0` to mutate the passed in an array by resetting it's length to zero and `Array.prototype.push()` to re-populate it with only the pulled values.
+
+
+根据给定的迭代器（iterator）函数，修改原始数组，过滤掉指定的值。
+
+检查函数中是否提供了最后一个参数。
+使用 `array.prototype.map()` 将迭代器函数 `fn` 应用于所有数组元素。
+使用 `Array.prototype.filter()` 和 `array.prototype.include()` 过滤指定的值。
+使用 `Array.prototype.length = 0` 通过将数组的长度重置为0来清空数组，并使用 `array.prototype.push()` 把提取的值重新填充数组。
 
 ```js
 const pullBy = (arr, ...args) => {
@@ -2211,10 +2331,12 @@ pullBy(myArray, [{ x: 1 }, { x: 3 }], o => o.x); // myArray = [{ x: 2 }]
 
 ### reducedFilter
 
-Filter an array of objects based on a condition while also filtering out unspecified keys.
 
-Use `Array.prototype.filter()` to filter the array based on the predicate `fn` so that it returns the objects for which the condition returned a truthy value.
-On the filtered array, use `Array.prototype.map()` to return the new object using `Array.prototype.reduce()` to filter out the keys which were not supplied as the `keys` argument.
+
+根据条件过滤一个对象数组，同时过滤掉未指定的键。
+
+使用 `array.prototype.filter()` 根据断言函数 `fn` 对数组进行过滤，返回条件为真值（truthy）的对象。
+在经过过滤后的数组上，使用 `array.prototype.map()` 和 `array.prototype.reduce()` 过滤掉在 `keys` 参数中未提供的键。
 
 ```js
 const reducedFilter = (data, keys, fn) =>
@@ -2251,10 +2373,12 @@ reducedFilter(data, ['id', 'name'], item => item.age > 24); // [{ id: 2, name: '
 <br>[⬆ Back to top](#contents)
 
 ### reduceSuccessive
+【待翻译】
 
-Applies a function against an accumulator and each element in the array (from left to right), returning an array of successively reduced values.
 
-Use `Array.prototype.reduce()` to apply the given function to the given array, storing each new result.
+对数组中的每个元素（从左到右）都应用累加器（accumulator）函数，返回依次减少一个值的数组。
+
+使用 `array.prototype.reduce()` 将给定函数应用于给定数组，存储每个得到的新结果。
 
 ```js
 const reduceSuccessive = (arr, fn, acc) =>
@@ -2268,16 +2392,19 @@ const reduceSuccessive = (arr, fn, acc) =>
 reduceSuccessive([1, 2, 3, 4, 5, 6], (acc, val) => acc + val, 0); // [0, 1, 3, 6, 10, 15, 21]
 ```
 
+
 </details>
 
 <br>[⬆ Back to top](#contents)
 
 ### reduceWhich
 
-Returns the minimum/maximum value of an array, after applying the provided function to set comparing rule.
 
-Use `Array.prototype.reduce()` in combination with the `comparator` function to get the appropriate element in the array.
-You can omit the second parameter, `comparator`, to use the default one that returns the minimum element in the array.
+
+将提供的函数设置比较规则后应用于数组，返回数组的最小/最大值。
+
+使用 `array.prototype.reduce()` 结合 `comparator` 函数来获取数组中合适的元素。
+您可以省略第二个参数 `comparator` ，默认返回数组中最小的元素。
 
 ```js
 const reduceWhich = (arr, comparator = (a, b) => a - b) =>
@@ -2302,7 +2429,11 @@ reduceWhich(
 
 ### reject
 
-Takes a predicate and array, like `Array.prototype.filter()`, but only keeps `x` if `pred(x) === false`.
+
+
+注：过滤掉符合断言函数条件的值
+
+接受断言函数和数组，使用 `array .prototype.filter()` ，但仅当 `pred(x) === false` 时才保留 `x` 。
 
 ```js
 const reject = (pred, array) => array.filter((...args) => !pred(...args));
@@ -2322,10 +2453,11 @@ reject(word => word.length > 4, ['Apple', 'Pear', 'Kiwi', 'Banana']); // ['Pear'
 
 ### remove
 
-Removes elements from an array for which the given function returns `false`.
 
-Use `Array.prototype.filter()` to find array elements that return truthy values and `Array.prototype.reduce()` to remove elements using `Array.prototype.splice()`.
-The `func` is invoked with three arguments (`value, index, array`).
+
+从数组中移除给定函数返回 `false` 的元素。
+
+使用 `Array.prototype.filter()`  和 `Array.prototype.reduce()` 来查找数组中返回真值的元素，使用 `Array.prototype.splice()` 来移除元素。 `func` 有三个参数 (`value, index, array`)。
 
 ```js
 const remove = (arr, func) =>
@@ -2350,10 +2482,13 @@ remove([1, 2, 3, 4], n => n % 2 === 0); // [2, 4]
 
 ### sample
 
-Returns a random element from an array.
 
-Use `Math.random()` to generate a random number, multiply it by `length` and round it off to the nearest whole number using `Math.floor()`.
-This method also works with strings.
+
+从数组中返回一个随机元素。
+
+使用 `Math.random()` 生成随机数，将其乘以 `length` ，并使用 `Math.floor()` 将其四舍五入到最近的整数。
+这个方法也适用于字符串。
+
 
 ```js
 const sample = arr => arr[Math.floor(Math.random() * arr.length)];
@@ -2372,11 +2507,12 @@ sample([3, 7, 9, 11]); // 9
 
 ### sampleSize
 
-Gets `n` random elements at unique keys from `array` up to the size of `array`.
 
-Shuffle the array using the [Fisher-Yates algorithm](https://github.com/30-seconds/30-seconds-of-code#shuffle).
-Use `Array.prototype.slice()` to get the first `n` elements.
-Omit the second argument, `n` to get only one element at random from the array.
+
+从 `array` 中获取 `n` 个唯一键随机元素。
+
+使用 [Fisher-Yates algorithm](https://github.com/30-seconds/30-seconds-of-code#shuffle)算法 对数组进行打乱。 使用`Array.prototype.slice()` 获取 `n` 个元素。 
+省略第二个参数 `n`， 从数组中随机获取 1 个元素。
 
 ```js
 const sampleSize = ([...arr], n = 1) => {
@@ -2403,12 +2539,14 @@ sampleSize([1, 2, 3], 4); // [2,3,1]
 
 ### shank
 
-Has the same functionality as [`Array.prototype.splice()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice), but returning a new array instead of mutating the original array.
 
-Use `Array.prototype.slice()` and `Array.prototype.concat()` to get a new array with the new contents after removing existing elements and/or adding new elements.
-Omit the second argument, `index`, to start at `0`.
-Omit the third argument, `delCount`, to remove `0` elements.
-Omit the fourth argument, `elements`, in order to not add any new elements.
+
+具有与[`Array.prototype.splice()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)相同的功能，但是 `Array.prototype.splice()` 返回一个新数组，而不是修改原始数组。
+
+在删除现有元素 和/或 添加新元素之后，使用 `array.prototype.slice()` 和 `array.prototype.concat()` 获得一个包含新内容的新数组。
+省略第二个参数 `index` ，下标从 `0` 开始。
+省略第三个参数 `delCount` ，删除 `0` 个元素。
+省略第四个参数 `elements` ，不添加任何新元素。
 
 ```js
 const shank = (arr, index = 0, delCount = 0, ...elements) =>
@@ -2434,9 +2572,11 @@ console.log(names); // ['alpha', 'bravo', 'charlie']
 
 ### shuffle
 
-Randomizes the order of the values of an array, returning a new array.
 
-Uses the [Fisher-Yates algorithm](https://github.com/30-seconds/30-seconds-of-code#shuffle) to reorder the elements of the array.
+
+随机排列指定数组元素的顺序，返回一个新的数组。
+
+使用 [Fisher-Yates algorithm](https://github.com/30-seconds/30-seconds-of-code#shuffle) 算法 对数组元素进行重新排序。
 
 ```js
 const shuffle = ([...arr]) => {
@@ -2463,9 +2603,11 @@ shuffle(foo); // [2, 3, 1], foo = [1, 2, 3]
 
 ### similarity
 
-Returns an array of elements that appear in both arrays.
 
-Use `Array.prototype.filter()` to remove values that are not part of `values`, determined using `Array.prototype.includes()`.
+
+返回两个数组的交集。
+
+使用 `Array.prototype.filter()` 移除不属于 `values` 中的值，这些值由 `array .prototype.include()` 来确定。
 
 ```js
 const similarity = (arr, values) => arr.filter(v => values.includes(v));
@@ -2484,10 +2626,12 @@ similarity([1, 2, 3], [1, 2, 4]); // [1, 2]
 
 ### sortedIndex
 
-Returns the lowest index at which value should be inserted into array in order to maintain its sort order.
 
-Check if the array is sorted in descending order (loosely).
-Use `Array.prototype.findIndex()` to find the appropriate index where the element should be inserted.
+
+返回指定值插入到数组中的最小索引位置，以保持其排序顺序。
+
+检查数组是否按降序（松散地）排序。 使用 `Array.prototype.findIndex()` 找到元素应该被插入的合适的索引位置。
+
 
 ```js
 const sortedIndex = (arr, n) => {
@@ -2511,10 +2655,12 @@ sortedIndex([30, 50], 40); // 1
 
 ### sortedIndexBy
 
-Returns the lowest index at which value should be inserted into array in order to maintain its sort order, based on a provided iterator function.
 
-Check if the array is sorted in descending order (loosely).
-Use `Array.prototype.findIndex()` to find the appropriate index where the element should be inserted, based on the iterator function `fn`.
+
+返回根据提供的迭代器函数，将指定值插入到数组中的最小索引位置，以保持其排序顺序。
+
+检查数组是否按降序(松散地)排序。
+使用 `Array.prototype.findIndex()` 根据迭代器函数 `fn` 查找应该插入元素的适当索引。
 
 ```js
 const sortedIndexBy = (arr, n, fn) => {
@@ -2538,10 +2684,12 @@ sortedIndexBy([{ x: 4 }, { x: 5 }], { x: 4 }, o => o.x); // 0
 
 ### sortedLastIndex
 
-Returns the highest index at which value should be inserted into array in order to maintain its sort order.
 
-Check if the array is sorted in descending order (loosely).
-Use `Array.prototype.reverse()` and `Array.prototype.findIndex()` to find the appropriate last index where the element should be inserted.
+
+返回指定值插入到数组中的最大索引位置，以保持其排序顺序。
+
+检查数组是否按降序(松散地)排序。
+使用 `Array.prototype.reverse()` 和 ` Array.prototype.findIndex()` 查找应该插入元素的最后一个适当的索引。
 
 ```js
 const sortedLastIndex = (arr, n) => {
@@ -2564,11 +2712,14 @@ sortedLastIndex([10, 20, 30, 30, 40], 30); // 4
 
 ### sortedLastIndexBy
 
-Returns the highest index at which value should be inserted into array in order to maintain its sort order, based on a provided iterator function.
 
-Check if the array is sorted in descending order (loosely).
-Use `Array.prototype.map()` to apply the iterator function to all elements of the array.
-Use `Array.prototype.reverse()` and `Array.prototype.findIndex()` to find the appropriate last index where the element should be inserted, based on the provided iterator function.
+
+返回根据提供的迭代器函数，将指定值插入到数组中的最大索引位置，以保持其排序顺序。
+
+检查数组是否按降序(松散地)排序。
+使用 `array.prototype.map()` 将迭代器函数应用于数组的所有元素。
+使用 `Array.prototype.reverse()` 和 ` Array.prototype.findIndex()` 根据提供的迭代器函数，查找应该插入元素的最后一个适当的索引。
+
 
 ```js
 const sortedLastIndexBy = (arr, n, fn) => {
@@ -2595,12 +2746,14 @@ sortedLastIndexBy([{ x: 4 }, { x: 5 }], { x: 4 }, o => o.x); // 1
 
 ### stableSort ![advanced](/advanced.svg)
 
-Performs stable sorting of an array, preserving the initial indexes of items when their values are the same.
-Does not mutate the original array, but returns a new array instead.
 
-Use `Array.prototype.map()` to pair each element of the input array with its corresponding index.
-Use `Array.prototype.sort()` and a `compare` function to sort the list, preserving their initial order if the items compared are equal.
-Use `Array.prototype.map()` to convert back to the initial array items.
+
+对数组执行稳定排序，值相同时保留其初始索引。
+不改变原始数组，而是返回新数组。
+
+使用 `array.prototype.map()` 将输入数组的每个元素与其对应的索引配对。
+使用 `Array.prototype.sort()` 和 `compare` 函数对列表进行排序，如果比较的值相等，则保留它们的初始顺序。
+使用 `array.prototype.map()` 将其转换回初始数组项。
 
 ```js
 const stableSort = (arr, compare) =>
@@ -2624,9 +2777,11 @@ const stable = stableSort(arr, () => 0); // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 ### symmetricDifference
 
-Returns the symmetric difference between two arrays, without filtering out duplicate values.
 
-Create a `Set` from each array, then use `Array.prototype.filter()` on each of them to only keep values not contained in the other.
+
+返回两个数组之间的差集，而不过滤重复的值。
+
+根据每个数组创建一个 `Set` ，然后在每个数组上使用 `array.prototype.filter()` ，只保留不包含在另一个数组中的值。
 
 ```js
 const symmetricDifference = (a, b) => {
@@ -2650,9 +2805,11 @@ symmetricDifference([1, 2, 2], [1, 3, 1]); // [2, 2, 3]
 
 ### symmetricDifferenceBy
 
-Returns the symmetric difference between two arrays, after applying the provided function to each array element of both.
 
-Create a `Set` by applying `fn` to each array's elements, then use `Array.prototype.filter()` on each of them to only keep values not contained in the other.
+
+将提供的函数应用于两个数组的每个元素后，返回两个数组之间的差集。
+
+根据每个数组创建一个 `Set` ，然后在每个数组上使用 `array.prototype.filter()` ，只保留不包含在另一个数组中的值。
 
 ```js
 const symmetricDifferenceBy = (a, b, fn) => {
@@ -2675,9 +2832,11 @@ symmetricDifferenceBy([2.1, 1.2], [2.3, 3.4], Math.floor); // [ 1.2, 3.4 ]
 
 ### symmetricDifferenceWith
 
-Returns the symmetric difference between two arrays, using a provided function as a comparator.
 
-Use `Array.prototype.filter()` and `Array.prototype.findIndex()` to find the appropriate values.
+
+使用提供的函数作为比较器，返回两个数组之间的差集。
+
+使用 `Array.prototype.filter()` 和 `Array.prototype.findIndex()` 查找合适的值。
 
 ```js
 const symmetricDifferenceWith = (arr, val, comp) => [
@@ -2703,9 +2862,11 @@ symmetricDifferenceWith(
 
 ### tail
 
-Returns all elements in an array except for the first one.
 
-Return `Array.prototype.slice(1)` if the array's `length` is more than `1`, otherwise, return the whole array.
+
+返回数组中除第一个元素外的所有元素。
+
+如果数组的 `length` 大于 `1`, ，则返回 `Array.prototype.slice(1)`，否则返回整个数组。
 
 ```js
 const tail = arr => (arr.length > 1 ? arr.slice(1) : arr);
@@ -2725,9 +2886,11 @@ tail([1]); // [1]
 
 ### take
 
-Returns an array with n elements removed from the beginning.
 
-Use `Array.prototype.slice()` to create a slice of the array with `n` elements taken from the beginning.
+
+返回从开头开始提取 `n` 个元素的数组。
+
+使用 `array.prototype.slice()` 创建数组的一个切片，其中包含从开头开始提取的 `n` 个元素。
 
 ```js
 const take = (arr, n = 1) => arr.slice(0, n);
@@ -2747,9 +2910,11 @@ take([1, 2, 3], 0); // []
 
 ### takeRight
 
-Returns an array with n elements removed from the end.
 
-Use `Array.prototype.slice()` to create a slice of the array with `n` elements taken from the end.
+
+返回从结尾开始向前提取 `n` 个元素的数组。
+
+使用 `array.prototype.slice()` 创建数组的一个切片，其中包含从结尾开始向前提取的 `n` 个元素。
 
 ```js
 const takeRight = (arr, n = 1) => arr.slice(arr.length - n, arr.length);
@@ -2769,9 +2934,9 @@ takeRight([1, 2, 3]); // [3]
 
 ### takeRightWhile
 
-Removes elements from the end of an array until the passed function returns `true`. Returns the removed elements.
 
-Loop through the array, using a `Array.prototype.reduceRight()` and accumulating elements while the function returns falsy value.
+
+从数组末尾移除元素，直到传递的函数返回“true”。返回删除的元素。
 
 ```js
 const takeRightWhile = (arr, func) =>
@@ -2791,10 +2956,12 @@ takeRightWhile([1, 2, 3, 4], n => n < 3); // [3, 4]
 
 ### takeWhile
 
-Removes elements in an array until the passed function returns `true`. Returns the removed elements.
 
-Loop through the array, using a `for...of` loop over `Array.prototype.entries()` until the returned value from the function is `true`.
-Return the removed elements, using `Array.prototype.slice()`.
+
+从数组的开头开始删除数组中的元素，直到传递的函数返回 `true` 。返回删除的元素。
+
+循环遍历数组，使用 `for...of` 循环 `Array.prototype.entries()` 拿到的值， 直到函数返回的值为 `true` 为止。
+使用 `Array.prototype.slice()` 返回删除的元素。
 
 ```js
 const takeWhile = (arr, func) => {
@@ -2816,9 +2983,11 @@ takeWhile([1, 2, 3, 4], n => n >= 3); // [1, 2]
 
 ### toHash
 
-Reduces a given Array-like into a value hash (keyed data store).
 
-Given an Iterable or Array-like structure, call `Array.prototype.reduce.call()` on the provided object to step over it and return an Object, keyed by the reference value.
+
+将给定的类数组简化为值哈希（value hash）(有键的数据存储)。
+
+给定一个可迭代的类数组结构，在提供的对象上调用 `Array.prototype.reduce.call()` 逐个处理元素，并返回一个对象，该对象由键引用一个值。
 
 ```js
 const toHash = (object, key) =>
@@ -2854,9 +3023,11 @@ managers; // [ { manager:1, employees: [ { id: 2, first: "Joe" }, { id: 3, first
 
 ### union
 
-Returns every element that exists in any of the two arrays once.
 
-Create a `Set` with all values of `a` and `b` and convert to an array.
+
+返回两个数组的并集，相同的元素只出现一次。
+
+基于 `a` 和 `b` 创建一个 `Set` 对象，返回转换后的数组。
 
 ```js
 const union = (a, b) => Array.from(new Set([...a, ...b]));
@@ -2875,11 +3046,12 @@ union([1, 2, 3], [4, 3, 2]); // [1,2,3,4]
 
 ### unionBy
 
-Returns every element that exists in any of the two arrays once, after applying the provided function to each array element of both.
 
-Create a `Set` by applying all `fn` to all values of `a`.
-Create a `Set` from `a` and all elements in `b` whose value, after applying `fn` does not match a value in the previously created set.
-Return the last set converted to an array.
+
+将所提供的函数应用于两个数组的每个元素之后，返回两个数组的并集，相同的元素只出现一次。
+
+在 `fn` 应用于 `a` 的所有元素后创建一个 `Set`，并在 `b` 中过滤已经在集合中存在的元素。
+最后返回一个转换为数组的集合。
 
 ```js
 const unionBy = (a, b, fn) => {
@@ -2901,9 +3073,11 @@ unionBy([2.1], [1.2, 2.3], Math.floor); // [2.1, 1.2]
 
 ### unionWith
 
-Returns every element that exists in any of the two arrays once, using a provided comparator function.
 
-Create a `Set` with all values of `a` and values in `b` for which the comparator finds no matches in `a`, using `Array.prototype.findIndex()`.
+
+使用提供的比较器函数，返回两个数组的并集，相同的元素只出现一次。
+
+用 `Array.prototype.findIndex()` 使用提供的比较器函数后，在 `b` 中查找没有在 `a` 中匹配的值。
 
 ```js
 const unionWith = (a, b, comp) =>
@@ -2923,9 +3097,11 @@ unionWith([1, 1.2, 1.5, 3, 0], [1.9, 3, 0, 3.9], (a, b) => Math.round(a) === Mat
 
 ### uniqueElements
 
-Returns all unique values of an array.
 
-Use ES6 `Set` and the `...rest` operator to discard all duplicated values.
+
+返回去重后的数组。
+
+使用 ES6 的 `Set` 和 `...rest` 运算符去除所有重复的值。
 
 ```js
 const uniqueElements = arr => [...new Set(arr)];
@@ -2944,10 +3120,12 @@ uniqueElements([1, 2, 2, 3, 4, 4, 5]); // [1, 2, 3, 4, 5]
 
 ### uniqueElementsBy
 
-Returns all unique values of an array, based on a provided comparator function.
 
-Use `Array.prototype.reduce()` and `Array.prototype.some()` for an array containing only the first unique occurrence of each value, based on the comparator function, `fn`.
-The comparator function takes two arguments: the values of the two elements being compared.
+
+根据提供的比较器函数，返回去重后的数组。
+
+根据比较器函数 `fn`， 使用 `Array.prototype.reduce()` 和 `Array.prototype.some()` 去除重复的值，只保留重复值中第一个出现的值。
+比较器（comparator）函数接受两个参数：正在比较的两个元素的值。
 
 ```js
 const uniqueElementsBy = (arr, fn) =>
@@ -2979,10 +3157,7 @@ uniqueElementsBy(
 
 ### uniqueElementsByRight
 
-Returns all unique values of an array, based on a provided comparator function, starting from the right.
 
-Use `Array.prototype.reduceRight()` and `Array.prototype.some()` for an array containing only the last unique occurrence of each value, based on the comparator function, `fn`.
-The comparator function takes two arguments: the values of the two elements being compared.
 
 ```js
 const uniqueElementsByRight = (arr, fn) =>
@@ -3236,9 +3411,10 @@ zipWith(
 
 ### arrayToHtmlList
 
-Converts the given array elements into `<li>` tags and appends them to the list of the given id.
 
-Use `Array.prototype.map()`, `document.querySelector()`, and an anonymous inner closure to create a list of html tags.
+
+将给定的数组元素转换为 `<li>` 标签，并将它们添加到给定 id 的列表中。
+使用 `Array.prototype.map()` 、`document.querySelector()` 和匿名内部闭包创建 `html` 标签列表。
 
 ```js
 const arrayToHtmlList = (arr, listID) =>
@@ -3264,6 +3440,10 @@ arrayToHtmlList(['item 1', 'item 2'], 'myListID');
 Returns `true` if the bottom of the page is visible, `false` otherwise.
 
 Use `scrollY`, `scrollHeight` and `clientHeight` to determine if the bottom of the page is visible.
+
+
+如果页面底部可见，返回 `true`，否则返回 `false`。
+使用 `scrollY`, `scrollHeight` 和 `clientHeight` 来判断页面的底部是否可见。
 
 ```js
 const bottomVisible = () =>
@@ -4667,6 +4847,12 @@ Attempts to invoke a function with the provided arguments, returning either the 
 
 Use a `try... catch` block to return either the result of the function or an appropriate error.
 
+
+尝试调用作为参数的函数，返回结果或捕获到的错误对象。
+
+使用 `try ... catch` 块返回函数的结果或适当的错误。
+
+
 ```js
 const attempt = (fn, ...args) => {
   try {
@@ -4698,6 +4884,12 @@ Creates a function that invokes `fn` with a given context, optionally adding any
 Return a `function` that uses `Function.prototype.apply()` to apply the given `context` to `fn`.
 Use `Array.prototype.concat()` to prepend any additional supplied parameters to the arguments.
 
+
+创建一个函数，该函数使用给定的上下文调用 `fn`，最初的参数列表中添加任何额外提供的可选参数。
+
+返回一个 `function`，它使用 `Function.prototype.apply()` 将给定的 `context` 应用于 `fn`。
+使用 spread 操作符(`...`) 将任何额外提供的可选参数添加到参数列表中，并传递给 `fn`。
+
 ```js
 const bind = (fn, context, ...boundArgs) => (...args) => fn.apply(context, [...boundArgs, ...args]);
 ```
@@ -4724,6 +4916,9 @@ Creates a function that invokes the method at a given key of an object, optional
 
 Return a `function` that uses `Function.prototype.apply()` to bind `context[fn]` to `context`.
 Use the spread operator (`...`) to prepend any additional supplied parameters to the arguments.
+
+创建一个函数，该函数以对象的给定键调用方法，并可选地在参数的开头添加任何额外提供的参数。
+
 
 ```js
 const bindKey = (context, fn, ...boundArgs) => (...args) =>
@@ -4753,6 +4948,10 @@ console.log(freddyBound('hi', '!')); // 'hi fred!'
 Chains asynchronous functions.
 
 Loop through an array of functions containing asynchronous events, calling `next` when each asynchronous event has completed.
+
+链式调用异步函数。
+
+循环遍历包含异步事件的函数数组，每次异步事件完成后调用 `next`。
 
 ```js
 const chainAsync = fns => {
@@ -4795,6 +4994,13 @@ Given a `predicate` function and a `prop` string, this curried function will the
 
 Summon `prop` on `obj`, pass it to a provided `predicate` function and return a masked boolean.
 
+待翻译。。。。。。
+
+给定一个 `predicate` 断言函数和一个 `prop` 字符串，这个柯里化（curried）函数将通过调用该属性并将其传递给断言来接收一个 `object` 进行检查。
+
+这个柯里化（curried）函数将接收一个 `object`，把对象访问的属性，传递给断言函数，
+
+
 ```js
 const checkProp = (predicate, prop) => obj => !!predicate(obj[prop]);
 ```
@@ -4803,19 +5009,6 @@ const checkProp = (predicate, prop) => obj => !!predicate(obj[prop]);
 <summary>Examples</summary>
 
 ```js
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const lengthIs4 = checkProp(l => l === 4, 'length');
@@ -4841,12 +5034,17 @@ noLength(new Set()); // true
 
 <br>[⬆ Back to top](#contents)
 
-### compose
+### compose - 函数式编程术语：函数组合
 
 Performs right-to-left function composition.
 
 Use `Array.prototype.reduce()` to perform right-to-left function composition.
 The last (rightmost) function can accept one or more arguments; the remaining functions must be unary.
+
+执行从右到左的函数组合。
+
+使用 `Array.prototype.reduce()` 执行从右到左的函数组合。
+最后一个(最右边的)函数可以接受一个或多个参数;其余的函数必须是接收一个参数的函数。
 
 ```js
 const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)));
@@ -4876,6 +5074,11 @@ Performs left-to-right function composition.
 Use `Array.prototype.reduce()` to perform left-to-right function composition.
 The first (leftmost) function can accept one or more arguments; the remaining functions must be unary.
 
+执行从左到右的函数组合。
+
+使用 `Array.prototype.reduce()` 执行从左到右的函数组合。
+第一个(最左边的)函数可以接受一个或多个参数;其余的函数必须是接收一个参数的函数。
+
 ```js
 const composeRight = (...fns) => fns.reduce((f, g) => (...args) => g(f(...args)));
 ```
@@ -4901,6 +5104,11 @@ Accepts a converging function and a list of branching functions and returns a fu
 Use `Array.prototype.map()` and `Function.prototype.apply()` to apply each function to the given arguments.
 Use the spread operator (`...`) to call `coverger` with the results of all other functions.
 
+接受聚合函数和分支函数列表，并返回一个函数，该函数将参数传递给每个分支函数，分支函数的结果作为参数传递给聚合函数。
+
+使用 `Array.prototype.map()` 和 `function .prototype.apply()` 使每个函数处理给定的参数。
+调用 `coverger` 使用 spread 操作符('...')得到所有其他函数的结果。
+
 ```js
 const converge = (converger, fns) => (...args) => converger(...fns.map(fn => fn.apply(null, args)));
 ```
@@ -4920,14 +5128,15 @@ average([1, 2, 3, 4, 5, 6, 7]); // 4
 
 <br>[⬆ Back to top](#contents)
 
-### curry
+### curry --- 函数式编程术语：柯里化
+[待翻译]
 
-Curries a function.
 
-Use recursion.
-If the number of provided arguments (`args`) is sufficient, call the passed function `fn`.
-Otherwise, return a curried function `fn` that expects the rest of the arguments.
-If you want to curry a function that accepts a variable number of arguments (a variadic function, e.g. `Math.min()`), you can optionally pass the number of arguments to the second parameter `arity`.
+
+柯里化一个函数。
+
+使用递归。 
+如果提供的参数 (`args`) 数量足够，调用传递的函数 `fn`， 否则返回一个柯里化后的函数 `fn`，期望剩下的参数。如果你想柯里化一个接受可变参数数量的函数(可变参数数量的函数，例如 Math.min() )，你可以选择将参数个数传递给第二个参数 arity。
 
 ```js
 const curry = (fn, arity = fn.length, ...args) =>
@@ -5449,6 +5658,12 @@ Checks if two numbers are approximately equal to each other.
 Use `Math.abs()` to compare the absolute difference of the two values to `epsilon`.
 Omit the third parameter, `epsilon`, to use a default value of `0.001`.
 
+检查两个数是否近似相等。
+
+使用 `Math.abs()` 将两个值的绝对差值与 `epsilon` 进行比较。
+省略第三个参数 `epsilon`，使用默认值`0.001`。
+
+
 ```js
 const approximatelyEqual = (v1, v2, epsilon = 0.001) => Math.abs(v1 - v2) < epsilon;
 ```
@@ -5469,6 +5684,11 @@ approximatelyEqual(Math.PI / 2.0, 1.5708); // true
 Returns the average of two or more numbers.
 
 Use `Array.prototype.reduce()` to add each value to an accumulator, initialized with a value of `0`, divide by the `length` of the array.
+
+返回两个或更多数字的平均值。
+
+使用 `array. prototype.reduce()` 将每个值累加，初始值为 `0`，然后除以数组的 `length`。
+
 
 ```js
 const average = (...nums) => nums.reduce((acc, val) => acc + val, 0) / nums.length;
@@ -5491,6 +5711,11 @@ average(1, 2, 3); // 2
 Returns the average of an array, after mapping each element to a value using the provided function.
 
 Use `Array.prototype.map()` to map each element to the value returned by `fn`, `Array.prototype.reduce()` to add each value to an accumulator, initialized with a value of `0`, divide by the `length` of the array.
+
+
+使用提供的函数将每个元素映射到一个值后，返回数组的平均值。
+
+使用 `Array.prototype.map()` 将每个元素映射到 `fn` 函数的返回值，使用 `array. prototype.reduce()` 将每个值累加，初始值为 `0`，然后除以数组的 `length`。
 
 ```js
 const averageBy = (arr, fn) =>
@@ -5550,6 +5775,14 @@ Clamps `num` within the inclusive range specified by the boundary values `a` and
 
 If `num` falls within the range, return `num`.
 Otherwise, return the nearest number in the range.
+
+将num夹在由边值a和b指定的包含范围内。
+
+在边界值“a”和“b”指定的包含范围内钳位`num`。
+
+返回由边界值 `a` 和 `b` 限定范围内的 `num` 。
+
+如果 `num` 在限定范围内，则返回 `num`。 否则，返回范围内最接近 `num` 的数字。
 
 ```js
 const clampNumber = (num, a, b) => Math.max(Math.min(num, Math.max(a, b)), Math.min(a, b));
@@ -6485,6 +6718,11 @@ Decodes a string of data which has been encoded using base-64 encoding.
 
 Create a `Buffer` for the given string with base-64 encoding and use `Buffer.toString('binary')` to return the decoded string.
 
+
+解码使用 `base-64` 编码的数据字符串。
+
+使用 `base-64` 编码为给定字符串创建 `Buffer`，并使用 `Buffer.toString（'binary'）` 返回已解码的字符串。
+
 ```js
 const atob = str => Buffer.from(str, 'base64').toString('binary');
 ```
@@ -6505,6 +6743,11 @@ atob('Zm9vYmFy'); // 'foobar'
 Creates a base-64 encoded ASCII string from a String object in which each character in the string is treated as a byte of binary data.
 
 Create a `Buffer` for the given string with binary encoding and use `Buffer.toString('base64')` to return the encoded string.
+
+
+创建 `base-64` 编码的 `ASCII` 字符串，其中字符串中的每个字符都被视为二进制数据的字节。
+
+使用二进制编码为给定字符串创建 `Buffer`，并使用 `Buffer.toString（'base64'）` 返回编码字符串。
 
 ```js
 const btoa = str => Buffer.from(str, 'binary').toString('base64');
@@ -6548,6 +6791,10 @@ const colorize = (...args) => ({
   bgWhite: `\x1b[47m${args.join(' ')}\x1b[0m`
 });
 ```
+
+向文本中添加特殊字符，以便在控制台中以彩色方式打印(与 `console.log()` 结合)。
+
+使用模板字面量和特殊字符将相应的颜色代码添加到字符串输出中。 对于有背景颜色的，添加一个特殊字符，在字符串的末尾重置背景颜色。
 
 <details>
 <summary>Examples</summary>
@@ -6889,6 +7136,11 @@ UUIDGeneratorNode(); // '79c7c136-60ee-40a2-beb2-856f1feabefc'
 Binds methods of an object to the object itself, overwriting the existing method.
 
 Use `Array.prototype.forEach()` to return a `function` that uses `Function.prototype.apply()` to apply the given context (`obj`) to `fn` for each function specified.
+
+
+将对象的方法绑定到对象本身，覆盖现有方法。
+
+使用 `Array.prototype.forEach()` 返回一个 `function` ，该函数使用 `function.prototype.apply()` 为每个指定的函数将给定的上下文(`obj`) 应用于 `fn`。
 
 ```js
 const bindAll = (obj, ...fns) =>
@@ -7966,6 +8218,10 @@ Returns the length of a string in bytes.
 
 Convert a given string to a [`Blob` Object](https://developer.mozilla.org/en-US/docs/Web/API/Blob) and find its `size`.
 
+以字节为单位返回字符串的长度。
+
+将给定的字符串转换为[`Blob Object`]（https://developer.mozilla.org/en-US/docs/Web/API/Blob）并找到它的`size`。
+
 ```js
 const byteSize = str => new Blob([str]).size;
 ```
@@ -7988,6 +8244,12 @@ Capitalizes the first letter of a string.
 
 Use array destructuring and `String.prototype.toUpperCase()` to capitalize first letter, `...rest` to get array of characters after first letter and then `Array.prototype.join('')` to make it a string again.
 Omit the `lowerRest` parameter to keep the rest of the string intact, or set it to `true` to convert to lowercase.
+
+
+将字符串的第一个字母大写。
+
+使用数组解构和 `String.prototype.toUpperCase()` 把第一个字母大写，`...rest ` 获取第一个字母后的字符组成的数组，然后 `array .prototype.join(")` 将其再次变为字符串。
+省略 `lowerRest` 参数保持字符串的其余部分不变，或将其设置为 `true` 将字符串的剩余部分都转换为小写。
 
 ```js
 const capitalize = ([first, ...rest], lowerRest = false) =>
@@ -8012,6 +8274,11 @@ Capitalizes the first letter of every word in a string.
 
 Use `String.prototype.replace()` to match the first character of each word and `String.prototype.toUpperCase()` to capitalize it.
 
+将字符串中每个单词的第一个字母大写。
+
+使用 `String.prototype.replace()` 匹配每个单词的第一个字符，并使用 `String.prototype.toUpperCase()` 将其大写。
+
+
 ```js
 const capitalizeEveryWord = str => str.replace(/\b[a-z]/g, char => char.toUpperCase());
 ```
@@ -8032,6 +8299,10 @@ capitalizeEveryWord('hello world!'); // 'Hello World!'
 Returns a string with whitespaces compacted.
 
 Use `String.prototype.replace()` with a regular expression to replace all occurrences of 2 or more whitespace characters with a single space.
+
+返回替换空白字符后的字符串。
+
+使用 `String.prototype.replace()` 将正则表达式匹配到的2个或更多空白字符替换为1个空白字符。
 
 ```js
 const compactWhitespace = str => str.replace(/\s{2,}/g, ' ');
@@ -9303,6 +9574,10 @@ Casts the provided value as an array if it's not one.
 
 Use `Array.prototype.isArray()` to determine if `val` is an array and return it as-is or encapsulated in an array accordingly.
 
+如果提供的值不是数组，则将其转换为数组。
+
+使用 `array.prototype.isarray()` 来确定 `val` 是否是一个数组，如果是数组，按原样返回；如果不是数组，将值封装在数组中返回。
+
 ```js
 const castArray = val => (Array.isArray(val) ? val : [val]);
 ```
@@ -9324,6 +9599,10 @@ castArray([1]); // [1]
 Clones a regular expression.
 
 Use `new RegExp()`, `RegExp.source` and `RegExp.flags` to clone the given regular expression.
+
+克隆一个正则表达式。
+
+使用 `new RegExp()` ， `RegExp.source` 和 `RegExp.flags` 来克隆给定的正则表达式。
 
 ```js
 const cloneRegExp = regExp => new RegExp(regExp.source, regExp.flags);
@@ -9347,6 +9626,10 @@ Returns the first non-null/undefined argument.
 
 Use `Array.prototype.find()` to return the first non `null`/`undefined` argument.
 
+返回第一个不是 `null` 或 `undefined` 的参数。
+
+使用 `Array.prototype.find()` 返回第一个不是 `null` 或 `undefined` 的参数。
+
 ```js
 const coalesce = (...args) => args.find(_ => ![undefined, null].includes(_));
 ```
@@ -9368,6 +9651,9 @@ Returns a customized coalesce function that returns the first argument that retu
 
 Use `Array.prototype.find()` to return the first argument that returns `true` from the provided argument validation function.
 
+返回一个自定义的 `coalesce` 函数，该函数返回从提供的参数验证函数返回为 `true` 的第一个参数。
+
+使用 `Array.prototype.find()` 返回从提供的参数验证函数返回 `true` 的第一个参数。
 ```js
 const coalesceFactory = valid => (...args) => args.find(valid);
 ```
