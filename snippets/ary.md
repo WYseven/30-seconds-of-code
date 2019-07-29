@@ -1,9 +1,12 @@
 ### ary
 
+------------
+
 Creates a function that accepts up to `n` arguments, ignoring any additional arguments.
 
 Call the provided function, `fn`, with up to `n` arguments, using `Array.prototype.slice(0,n)` and the spread operator (`...`).
 
+------------
 
 创建一个函数，该函数接受最多 `n` 个参数，忽略任何其他参数。
 

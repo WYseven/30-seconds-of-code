@@ -1,8 +1,12 @@
 ### collectInto
 
+------------
+
 Changes a function that accepts an array into a variadic function.
 
 Given a function, return a closure that collects all inputs into an array-accepting function.
+
+------------
 
 将接受数组的函数改变为接收可变参数函数。
 
