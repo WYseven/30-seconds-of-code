@@ -514,9 +514,6 @@ _30s.average(1, 2, 3);
 
 ### ary
 
-Creates a function that accepts up to `n` arguments, ignoring any additional arguments.
-
-Call the provided function, `fn`, with up to `n` arguments, using `Array.prototype.slice(0,n)` and the spread operator (`...`).
 
 
 创建一个函数，该函数接受最多 `n` 个参数，忽略任何其他参数。
@@ -542,13 +539,7 @@ const firstTwoMax = ary(Math.max, 2);
 
 ### call
 
-Given a key and a set of arguments, call them when given a context. Primarily useful in composition.
 
-Use a closure to call a stored key with stored arguments.
-
-给定一个 `key` 和一组参数，在给定上下文时调用它们。主要用于函数组合。
-
-使用闭包以存储的参数调用存储的 `key`。
 
 ```js
 const call = (key, ...args) => context => context[key](...args);
@@ -573,9 +564,13 @@ Promise.resolve([1, 2, 3])
 
 ### collectInto
 
+------------
+
 Changes a function that accepts an array into a variadic function.
 
 Given a function, return a closure that collects all inputs into an array-accepting function.
+
+------------
 
 将接受数组的函数改变为接收可变参数函数。
 
@@ -602,9 +597,12 @@ Pall(p1, p2, p3).then(console.log); // [1, 2, 3] (after about 2 seconds)
 
 ### flip
 
-Flip takes a function as an argument, then makes the first argument the last.
 
-Return a closure that takes variadic inputs, and splices the last argument to make it the first argument before applying the rest.
+
+接受一个函数作为参数，然后将该函数第一个参数作为最后一个参数。（注：翻转参数）
+
+返回一个接受可变参数输入的闭包，并且在应用其余参数之前将最后一个参数作为第一个参数。
+
 
 ```js
 const flip = fn => (first, ...rest) => fn(...rest, first);
@@ -3159,6 +3157,11 @@ uniqueElementsBy(
 
 
 
+根据提供的比较器函数，从右边开始，返回去重后的数组。
+
+根据比较器函数 `fn`， 从右边开始，使用 `Array.prototype.reduceRight()` 和 `Array.prototype.some()` 去除重复的值，只保留重复值中最后一个出现的值。
+比较器（comparator）函数接受两个参数：正在比较的两个元素的值。
+
 ```js
 const uniqueElementsByRight = (arr, fn) =>
   arr.reduceRight((acc, v) => {
@@ -3189,9 +3192,11 @@ uniqueElementsByRight(
 
 ### uniqueSymmetricDifference
 
-Returns the unique symmetric difference between two arrays, not containing duplicate values from either array.
 
-Use `Array.prototype.filter()` and `Array.prototype.includes()` on each array to remove values contained in the other, then create a `Set` from the results, removing duplicate values.
+
+返回两个数组的差集，在两个数组中不重复的值。
+
+在每个数组上使用 `array.prototype.filter()` 和 `array .prototype.include()` 来过滤另一个数组中包含的值，然后从结果中创建一个 `Set` ，删除重复的值。
 
 ```js
 const uniqueSymmetricDifference = (a, b) => [
@@ -3213,10 +3218,13 @@ uniqueSymmetricDifference([1, 2, 2], [1, 3, 1]); // [2, 3]
 
 ### unzip
 
-Creates an array of arrays, ungrouping the elements in an array produced by [zip](#zip).
 
-Use `Math.max.apply()` to get the longest subarray in the array, `Array.prototype.map()` to make each element an array.
-Use `Array.prototype.reduce()` and `Array.prototype.forEach()` to map grouped values to individual arrays.
+
+创建一个数组，将 [zip](#zip) 生成的数组中的元素取消分组。
+
+使用 `Math.max.apply()` 获取数组中最长子数组的长度，使用 `Array.prototype.map()` 生成最长长度个数组。
+使用 `Array.prototype.reduce()` 和 `Array.prototype.forEach()` 将分组元素映射到对应的数组中。
+
 
 ```js
 const unzip = arr =>
@@ -3242,11 +3250,13 @@ unzip([['a', 1, true], ['b', 2]]); // [['a', 'b'], [1, 2], [true]]
 
 ### unzipWith ![advanced](/advanced.svg)
 
-Creates an array of elements, ungrouping the elements in an array produced by [zip](#zip) and applying the provided function.
 
-Use `Math.max.apply()` to get the longest subarray in the array, `Array.prototype.map()` to make each element an array.
-Use `Array.prototype.reduce()` and `Array.prototype.forEach()` to map grouped values to individual arrays.
-Use `Array.prototype.map()` and the spread operator (`...`) to apply `fn` to each individual group of elements.
+
+创建一个数组，将 [zip](#zip) 生成的数组中的元素取消分组，并结合提供的函数生成最后的结果。
+
+使用 `Math.max.apply()` 获取数组中最长子数组的长度，使用 `Array.prototype.map()` 生成最长长度个数组。
+使用 `Array.prototype.reduce()` 和 `Array.prototype.forEach()` 将分组元素映射到对应的数组中。
+使用 `Array.prototype.map()` 和展开操作符 (`...`) 将 `fn` 应用于每一组元素。
 
 ```js
 const unzipWith = (arr, fn) =>
@@ -3273,11 +3283,13 @@ unzipWith([[1, 10, 100], [2, 20, 200]], (...args) => args.reduce((acc, v) => acc
 
 ### without
 
-Filters out the elements of an array, that have one of the specified values.
 
-Use `Array.prototype.filter()` to create an array excluding(using `!Array.includes()`) all given values.
 
-_(For a snippet that mutates the original array see [`pull`](#pull))_
+过滤掉数组中具有指定值之一的元素。
+
+使用 `array.prototype.filter()` 创建一个数组，排除(使用 `!array.include()` )所有给定值。
+
+_(改变原始数组，请看 [`pull`](#pull)) 代码片段_
 
 ```js
 const without = (arr, ...args) => arr.filter(v => !args.includes(v));
@@ -3296,9 +3308,11 @@ without([2, 1, 2, 3], 1, 2); // [3]
 
 ### xProd
 
-Creates a new array out of the two supplied by creating each possible pair from the arrays.
 
-Use `Array.prototype.reduce()`, `Array.prototype.map()` and `Array.prototype.concat()` to produce every possible pair from the elements of the two arrays and save them in an array.
+
+将两个数组的每个元素两两进行组合，组合出所有的可能对存在数组中，返回一个存在所有可能性对的数组。
+
+使用 `Array.prototype.reduce()`, `Array.prototype.map()` 和 `Array.prototype.concat()` 从两个数组的元素中生成所有可能的对，并将它们保存在一个数组中。
 
 ```js
 const xProd = (a, b) => a.reduce((acc, x) => acc.concat(b.map(y => [x, y])), []);
@@ -3317,11 +3331,11 @@ xProd([1, 2], ['a', 'b']); // [[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b']]
 
 ### zip
 
-Creates an array of elements, grouped based on the position in the original arrays.
 
-Use `Math.max.apply()` to get the longest array in the arguments.
-Creates an array with that length as return value and use `Array.from()` with a map-function to create an array of grouped elements.
-If lengths of the argument-arrays vary, `undefined` is used where no value could be found.
+
+创建一个根据原始数组中的位置进行分组的数组。
+
+使用 `Math.max.apply()` 获取参数中最长的数组，创建一个长度为该长度的数组，并使用`Array.from()`  和映射函数（map-function） 来创建一个分组元素数组。 如果参数数组的长度不同，则在未找到值的情况下使用 `undefined` 。
 
 ```js
 const zip = (...arrays) => {
@@ -3346,9 +3360,11 @@ zip(['a'], [1, 2], [true, false]); // [['a', 1, true], [undefined, 2, false]]
 
 ### zipObject
 
-Given an array of valid property identifiers and an array of values, return an object associating the properties to the values.
 
-Since an object can have undefined values but not undefined property pointers, the array of properties is used to decide the structure of the resulting object using `Array.prototype.reduce()`.
+
+给定一个有效属性标识符数组和一个值数组，返回一个将属性关联到值的对象。
+
+由于对象可以有未定义的值，但不能有未定义的属性名，所以属性数组使用 `array.prototype.reduce()` 来决定结果对象的结构。
 
 ```js
 const zipObject = (props, values) =>
@@ -3369,13 +3385,15 @@ zipObject(['a', 'b'], [1, 2, 3]); // {a: 1, b: 2}
 
 ### zipWith ![advanced](/advanced.svg)
 
-Creates an array of elements, grouped based on the position in the original arrays and using function as the last value to specify how grouped values should be combined.
 
-Check if the last argument provided is a function.
-Use `Math.max()` to get the longest array in the arguments.
-Creates an array with that length as return value and use `Array.from()` with a map-function to create an array of grouped elements.
-If lengths of the argument-arrays vary, `undefined` is used where no value could be found.
-The function is invoked with the elements of each group `(...group)`.
+
+创建一个根据原始数组中的位置进行分组的数组，并使用函数作为最后一个参数来指定应如何组合分组中的值。
+
+检查最后提供的参数是否为函数。
+使用 `Math.max.apply()` 获取参数中最长的数组，创建一个长度为该长度的数组，并使用`Array.from()`  和映射函数（map-function） 来创建一个分组元素数组。 
+如果参数数组的长度不同，则在找不到值的地方使用“undefined”。
+最后一个参数提供的函数应用于每个组 `(...group)` 的元素。
+
 
 ```js
 const zipWith = (...array) => {
@@ -4843,9 +4861,6 @@ yesterday(); // 2018-10-17 (if current date is 2018-10-18)
 
 ### attempt
 
-Attempts to invoke a function with the provided arguments, returning either the result or the caught error object.
-
-Use a `try... catch` block to return either the result of the function or an appropriate error.
 
 
 尝试调用作为参数的函数，返回结果或捕获到的错误对象。
@@ -4879,10 +4894,6 @@ if (elements instanceof Error) elements = []; // elements = []
 
 ### bind
 
-Creates a function that invokes `fn` with a given context, optionally adding any additional supplied parameters to the beginning of the arguments.
-
-Return a `function` that uses `Function.prototype.apply()` to apply the given `context` to `fn`.
-Use `Array.prototype.concat()` to prepend any additional supplied parameters to the arguments.
 
 
 创建一个函数，该函数使用给定的上下文调用 `fn`，最初的参数列表中添加任何额外提供的可选参数。
@@ -5681,9 +5692,7 @@ approximatelyEqual(Math.PI / 2.0, 1.5708); // true
 
 ### average
 
-Returns the average of two or more numbers.
 
-Use `Array.prototype.reduce()` to add each value to an accumulator, initialized with a value of `0`, divide by the `length` of the array.
 
 返回两个或更多数字的平均值。
 
@@ -5708,9 +5717,6 @@ average(1, 2, 3); // 2
 
 ### averageBy
 
-Returns the average of an array, after mapping each element to a value using the provided function.
-
-Use `Array.prototype.map()` to map each element to the value returned by `fn`, `Array.prototype.reduce()` to add each value to an accumulator, initialized with a value of `0`, divide by the `length` of the array.
 
 
 使用提供的函数将每个元素映射到一个值后，返回数组的平均值。
@@ -6714,9 +6720,6 @@ vectorDistance(10, 0, 5, 20, 0, 10); // 11.180339887498949
 
 ### atob
 
-Decodes a string of data which has been encoded using base-64 encoding.
-
-Create a `Buffer` for the given string with base-64 encoding and use `Buffer.toString('binary')` to return the decoded string.
 
 
 解码使用 `base-64` 编码的数据字符串。
@@ -7133,9 +7136,6 @@ UUIDGeneratorNode(); // '79c7c136-60ee-40a2-beb2-856f1feabefc'
 
 ### bindAll
 
-Binds methods of an object to the object itself, overwriting the existing method.
-
-Use `Array.prototype.forEach()` to return a `function` that uses `Function.prototype.apply()` to apply the given context (`obj`) to `fn` for each function specified.
 
 
 将对象的方法绑定到对象本身，覆盖现有方法。
