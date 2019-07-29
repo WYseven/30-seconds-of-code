@@ -31,7 +31,7 @@ git commit -m "更新 gh-pages"
 git push
 
 # git subtree pull --prefix docs origin gh-pages
-git subtree split  --prefix docs origin gh-pages
+# git subtree split  --prefix docs origin gh-pages
 git subtree push --prefix docs origin gh-pages 
 
 
