@@ -9,6 +9,11 @@ The comparator function takes two arguments: the values of the two elements bein
 
 ------------
 
+根据提供的比较器函数，从右边开始，返回去重后的数组。
+
+根据比较器函数 `fn`， 从右边开始，使用 `Array.prototype.reduceRight()` 和 `Array.prototype.some()` 去除重复的值，只保留重复值中最后一个出现的值。
+比较器（comparator）函数接受两个参数：正在比较的两个元素的值。
+
 ```js
 const uniqueElementsByRight = (arr, fn) =>
   arr.reduceRight((acc, v) => {
