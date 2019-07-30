@@ -1,10 +1,19 @@
 ### pipeAsyncFunctions
 
+------------
+
 Performs left-to-right function composition for asynchronous functions.
 
 Use `Array.prototype.reduce()` with the spread operator (`...`) to perform left-to-right function composition using `Promise.then()`.
 The functions can return a combination of: simple values, `Promise`'s, or they can be defined as `async` ones returning through `await`.
 All functions must be unary.
+
+------------
+
+为返回的异步函数，从左到右依次执行函数组合。
+
+使用 `Array.prototype.reduce()` 和扩展操作符 (`...`) ，并结合`Promise.then()`，从左到右依次执行函数组合。
+函数的返回值，可以是:简单值、`Promise`对象，或者可以定义为 `async` ，通过 `wait` 返回值。
 
 ```js
 const pipeAsyncFunctions = (...fns) => arg => fns.reduce((p, f) => p.then(f), Promise.resolve(arg));
