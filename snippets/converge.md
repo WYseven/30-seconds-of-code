@@ -1,9 +1,13 @@
 ### converge
 
+------------
+
 Accepts a converging function and a list of branching functions and returns a function that applies each branching function to the arguments and the results of the branching functions are passed as arguments to the converging function.
 
 Use `Array.prototype.map()` and `Function.prototype.apply()` to apply each function to the given arguments.
 Use the spread operator (`...`) to call `coverger` with the results of all other functions.
+
+------------
 
 接受聚合函数和分支函数列表，并返回一个函数，该函数将参数传递给每个分支函数，分支函数的结果作为参数传递给聚合函数。
 

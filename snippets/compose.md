@@ -1,9 +1,13 @@
 ### compose - 函数式编程术语：函数组合
 
+------------
+
 Performs right-to-left function composition.
 
 Use `Array.prototype.reduce()` to perform right-to-left function composition.
 The last (rightmost) function can accept one or more arguments; the remaining functions must be unary.
+
+------------
 
 执行从右到左的函数组合。
 
