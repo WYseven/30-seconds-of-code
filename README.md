@@ -6,16 +6,22 @@
 [![Travis Build](https://travis-ci.com/30-seconds/30-seconds-of-code.svg?branch=master)](https://travis-ci.com/30-seconds/30-seconds-of-code) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6ab7791fb1ea40b4a576d658fb96807f)](https://www.codacy.com/app/Chalarangelo/30-seconds-of-code?utm_source=github.com&utm_medium=referral&utm_content=30-seconds/30-seconds-of-code&utm_campaign=Badge_Grade) [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/Flet/semistandard) <br/>
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![ProductHunt](https://img.shields.io/badge/producthunt-vote-orange.svg)](https://www.producthunt.com/posts/30-seconds-of-code) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-> Curated collection of useful JavaScript snippets that you can understand in 30 seconds or less.
+> 精选有用的JavaScript代码片段，您可以在30秒或更短的时间内理解它们。
 
-* Use <kbd>Ctrl</kbd> + <kbd>F</kbd> or <kbd>command</kbd> + <kbd>F</kbd> to search for a snippet.
-* Contributions welcome, please read the [contribution guide](CONTRIBUTING.md).
-* Snippets are written in ES6, use the [Babel transpiler](https://babeljs.io/) to ensure backwards-compatibility.
-* You can import these snippets into VSCode, by following the instructions found [here](https://github.com/WYseven/30-seconds-of-code/tree/master/vscode_snippets).
-* You can search, view and copy these snippets from a terminal, using the CLI application from [this repo](https://github.com/sQVe/30s).
-* If you want to follow 30-seconds-of-code on social media, you can find us on [Facebook](https://www.facebook.com/30secondsofcode), [Instagram](https://www.instagram.com/30secondsofcode) and [Twitter](https://twitter.com/30secondsofcode).
+* 使用 <kbd>Ctrl</kbd> + <kbd>F</kbd> 或者 <kbd>command</kbd> + <kbd>F</kbd> 搜索你需要的代码片段
+* 欢迎投稿, 请阅读投稿指南 [投稿指南](CONTRIBUTING.md).
+* 代码段是在 ES6 中编写的, 请使用 [Babel transpiler](https://babeljs.io/) 确保向后兼容。
+* 你可以把代码片段导入到 `Vscode` 中，点击查看操作指南[这里](https://github.com/WYseven/30-seconds-of-code/tree/master/vscode_snippets).
+* 您可以使用CLI应用程序从终端搜索、查看和复制这些代码片段 [查看这个仓库](https://github.com/sQVe/30s)。
 
-#### Related projects
+> 原文：[https://github.com/30-seconds/30-seconds-of-code](https://github.com/30-seconds/30-seconds-of-code)
+> 原作者：[Chalarangelo](https://github.com/Chalarangelo)
+> 翻译地址地址：[https://wyseven.github.io/30-seconds-of-code/](https://wyseven.github.io/30-seconds-of-code/)
+> 译者：[戎马](https://github.com/WYseven)
+
+本文翻译为译者所有，如有需要转载，请详细注明以上信息，谢谢合作。
+
+#### 相关项目
 
 * [30 Seconds of CSS](https://30-seconds.github.io/30-seconds-of-css/)
 * [30 Seconds of Interviews](https://30secondsofinterviews.org/)
@@ -27,9 +33,9 @@
 
 #### Package
 
-⚠️ **NOTICE:** A few of our snippets are not yet optimized for production (see disclaimers for individual snippet issues).
+⚠️ **NOTICE:** 我们的一些代码片段还没有针对生产环境进行优化(请参阅个别代码片段问题的免责声明).
 
-You can find a package with all the snippets on [npm](https://www.npmjs.com/package/30-seconds-of-code).
+您可以找到一个包含所有代码片段的包 [npm](https://www.npmjs.com/package/30-seconds-of-code).
 
 ```bash
 # With npm
@@ -42,7 +48,7 @@ yarn add 30-seconds-of-code
 [CDN link](https://unpkg.com/30-seconds-of-code/)
 
 <details>
-<summary>Details</summary>
+<summary>使用细节</summary>
 
 **Browser**
 
@@ -53,7 +59,7 @@ yarn add 30-seconds-of-code
 </script>
 ```
 
-**Node**
+**Node 中使用**
 
 ```js
 // CommonJS
@@ -67,7 +73,7 @@ _30s.average(1, 2, 3);
 
 </details>
 
-## Contents
+## 内容
 
 ### 🔌 Adapter
 
@@ -541,6 +547,10 @@ const firstTwoMax = ary(Math.max, 2);
 
 
 
+给定一个 `key` 和一组参数，在给定上下文时调用它们。主要用于函数组合。
+
+使用闭包以存储的参数调用存储的 `key`。
+
 ```js
 const call = (key, ...args) => context => context[key](...args);
 ```
@@ -627,9 +637,11 @@ Object.assign(b, a); // == b
 
 ### over
 
-Creates a function that invokes each provided function with the arguments it receives and returns the results.
 
-Use `Array.prototype.map()` and `Function.prototype.apply()` to apply each function to the given arguments.
+
+创建一个函数，该函数使用接收到的参数调用所提供的每个函数并返回结果。
+
+使用 `Array.prototype.map()` 和 `Function.prototype.apply()` 将每个函数应用于给定的参数。
 
 ```js
 const over = (...fns) => (...args) => fns.map(fn => fn.apply(null, args));
@@ -649,9 +661,11 @@ minMax(1, 2, 3, 4, 5); // [1,5]
 
 ### overArgs
 
-Creates a function that invokes the provided function with its arguments transformed.
 
-Use `Array.prototype.map()` to apply `transforms` to `args` in combination with the spread operator (`...`) to pass the transformed arguments to `fn`.
+
+创建一个函数，该函数调用所提供的函数并对传入的参数进行转换。
+
+使用 `Array.prototype.map()` 将 `transform` 应用于 `args` ，并结合扩展操作符 (`...`) 将转换后的参数传递给 `fn` 。
 
 ```js
 const overArgs = (fn, transforms) => (...args) => fn(...args.map((val, i) => transforms[i](val)));
@@ -673,11 +687,12 @@ fn(9, 3); // [81, 6]
 
 ### pipeAsyncFunctions
 
-Performs left-to-right function composition for asynchronous functions.
 
-Use `Array.prototype.reduce()` with the spread operator (`...`) to perform left-to-right function composition using `Promise.then()`.
-The functions can return a combination of: simple values, `Promise`'s, or they can be defined as `async` ones returning through `await`.
-All functions must be unary.
+
+为返回的异步函数，从左到右依次执行函数组合。
+
+使用 `Array.prototype.reduce()` 和扩展操作符 (`...`) ，并结合`Promise.then()`，从左到右依次执行函数组合。
+函数的返回值，可以是:简单值、`Promise`对象，或者可以定义为 `async` ，通过 `wait` 返回值。
 
 ```js
 const pipeAsyncFunctions = (...fns) => arg => fns.reduce((p, f) => p.then(f), Promise.resolve(arg));
@@ -704,10 +719,12 @@ const sum = pipeAsyncFunctions(
 
 ### pipeFunctions
 
-Performs left-to-right function composition.
 
-Use `Array.prototype.reduce()` with the spread operator (`...`) to perform left-to-right function composition.
-The first (leftmost) function can accept one or more arguments; the remaining functions must be unary.
+
+从左到右执行函数组合。
+
+使用 `Array.prototype.reduce()` 和扩展操作符 (`...`) 来执行从左到右的函数组合。
+第一个(最左边)函数可以接受一个或多个参数;其余的函数只接受一个参数。
 
 ```js
 const pipeFunctions = (...fns) => fns.reduce((f, g) => (...args) => g(f(...args)));
@@ -729,12 +746,14 @@ multiplyAndAdd5(5, 2); // 15
 
 ### promisify
 
-Converts an asynchronous function to return a promise.
 
-Use currying to return a function returning a `Promise` that calls the original function.
-Use the `...rest` operator to pass in all the parameters.
 
-*In Node 8+, you can use [`util.promisify`](https://nodejs.org/api/util.html#util_util_promisify_original)*
+将异步函数转换后，返回成 `Promise` 对象。
+
+使用柯里化函数，返回调用原始函数的 `Promise` 对象。
+使用的 `...rest` 操作符传入所有参数。
+
+*在 Node 8+中，你可以使用 [`util.promisify`](https://nodejs.org/api/util.html#util_util_promisify_original)*
 
 ```js
 const promisify = func => (...args) =>
@@ -757,9 +776,11 @@ delay(2000).then(() => console.log('Hi!')); // // Promise resolves after 2s
 
 ### rearg
 
-Creates a function that invokes the provided function with its arguments arranged according to the specified indexes.
 
-Use `Array.prototype.map()` to reorder arguments based on `indexes` in combination with the spread operator (`...`) to pass the transformed arguments to `fn`.
+
+创建一个函数，该函数调用提供的函数，并根据指定的索引排列参数。
+
+使用 `Array.prototype.map()` 根据 `indexes` 和扩展操作符 (`...`) 对参数重新排序，将转换后的参数传递给 `fn` 。
 
 ```js
 const rearg = (fn, indexes) => (...args) => fn(...indexes.map(i => args[i]));
@@ -784,9 +805,17 @@ rearged('b', 'c', 'a'); // ['a', 'b', 'c']
 
 ### spreadOver
 
+------------
+
 Takes a variadic function and returns a closure that accepts an array of arguments to map to the inputs of the function.
 
 Use closures and the spread operator (`...`) to map the array of arguments to the inputs of the function.
+
+------------
+
+接受一个可变参数的函数并返回一个闭包函数，该闭包函数接受要映射到函数的参数数组。
+
+使用闭包和扩展操作符 (`...`) 将参数数组一一映射为函数的参数。
 
 ```js
 const spreadOver = fn => argsArr => fn(...argsArr);
@@ -806,9 +835,11 @@ arrayMax([1, 2, 3]); // 3
 
 ### unary
 
-Creates a function that accepts up to one argument, ignoring any additional arguments.
 
-Call the provided function, `fn`, with just the first argument given.
+
+创建一个函数，该函数最多只接受一个参数，忽略其他的参数。
+
+调用提供的函数 `fn`，只需要给第一个参数即可。
 
 ```js
 const unary = fn => val => fn(val);
@@ -3432,7 +3463,8 @@ zipWith(
 
 
 将给定的数组元素转换为 `<li>` 标签，并将它们添加到给定 id 的列表中。
-使用 `Array.prototype.map()` 、`document.querySelector()` 和匿名内部闭包创建 `html` 标签列表。
+
+使用 `Array.prototype.map()` 、`document.querySelector()` 和内部闭包创建 `html` 标签列表。
 
 ```js
 const arrayToHtmlList = (arr, listID) =>
@@ -3455,9 +3487,6 @@ arrayToHtmlList(['item 1', 'item 2'], 'myListID');
 
 ### bottomVisible
 
-Returns `true` if the bottom of the page is visible, `false` otherwise.
-
-Use `scrollY`, `scrollHeight` and `clientHeight` to determine if the bottom of the page is visible.
 
 
 如果页面底部可见，返回 `true`，否则返回 `false`。
@@ -4923,13 +4952,9 @@ console.log(freddyBound('hi', '!')); // 'hi fred!'
 
 ### bindKey
 
-Creates a function that invokes the method at a given key of an object, optionally adding any additional supplied parameters to the beginning of the arguments.
 
-Return a `function` that uses `Function.prototype.apply()` to bind `context[fn]` to `context`.
-Use the spread operator (`...`) to prepend any additional supplied parameters to the arguments.
 
 创建一个函数，该函数以对象的给定键调用方法，并可选地在参数的开头添加任何额外提供的参数。
-
 
 ```js
 const bindKey = (context, fn, ...boundArgs) => (...args) =>
@@ -4956,9 +4981,7 @@ console.log(freddyBound('hi', '!')); // 'hi fred!'
 
 ### chainAsync
 
-Chains asynchronous functions.
 
-Loop through an array of functions containing asynchronous events, calling `next` when each asynchronous event has completed.
 
 链式调用异步函数。
 
@@ -5001,16 +5024,11 @@ chainAsync([
 
 ### checkProp
 
-Given a `predicate` function and a `prop` string, this curried function will then take an `object` to inspect by calling the property and passing it to the predicate.
 
-Summon `prop` on `obj`, pass it to a provided `predicate` function and return a masked boolean.
 
-待翻译。。。。。。
+给定一个断言（predicate）函数和一个 `prop` 字符串，这个柯里化（curried）函数将接收一个 `object` 对象，把对象访问的属性值，传递给断言函数，
 
-给定一个 `predicate` 断言函数和一个 `prop` 字符串，这个柯里化（curried）函数将通过调用该属性并将其传递给断言来接收一个 `object` 进行检查。
-
-这个柯里化（curried）函数将接收一个 `object`，把对象访问的属性，传递给断言函数，
-
+调用 `obj` 上的 `prop` ，将它传递给提供的 `predicate` 函数，并返回一个布尔值。
 
 ```js
 const checkProp = (predicate, prop) => obj => !!predicate(obj[prop]);
@@ -5047,10 +5065,7 @@ noLength(new Set()); // true
 
 ### compose - 函数式编程术语：函数组合
 
-Performs right-to-left function composition.
 
-Use `Array.prototype.reduce()` to perform right-to-left function composition.
-The last (rightmost) function can accept one or more arguments; the remaining functions must be unary.
 
 执行从右到左的函数组合。
 
@@ -5080,10 +5095,7 @@ multiplyAndAdd5(5, 2); // 15
 
 ### composeRight
 
-Performs left-to-right function composition.
 
-Use `Array.prototype.reduce()` to perform left-to-right function composition.
-The first (leftmost) function can accept one or more arguments; the remaining functions must be unary.
 
 执行从左到右的函数组合。
 
@@ -5110,10 +5122,7 @@ addAndSquare(1, 2); // 9
 
 ### converge
 
-Accepts a converging function and a list of branching functions and returns a function that applies each branching function to the arguments and the results of the branching functions are passed as arguments to the converging function.
 
-Use `Array.prototype.map()` and `Function.prototype.apply()` to apply each function to the given arguments.
-Use the spread operator (`...`) to call `coverger` with the results of all other functions.
 
 接受聚合函数和分支函数列表，并返回一个函数，该函数将参数传递给每个分支函数，分支函数的结果作为参数传递给聚合函数。
 
@@ -5140,14 +5149,14 @@ average([1, 2, 3, 4, 5, 6, 7]); // 4
 <br>[⬆ Back to top](#contents)
 
 ### curry --- 函数式编程术语：柯里化
-[待翻译]
 
 
 
 柯里化一个函数。
 
 使用递归。 
-如果提供的参数 (`args`) 数量足够，调用传递的函数 `fn`， 否则返回一个柯里化后的函数 `fn`，期望剩下的参数。如果你想柯里化一个接受可变参数数量的函数(可变参数数量的函数，例如 Math.min() )，你可以选择将参数个数传递给第二个参数 arity。
+如果提供的参数 (`args`) 是函数 `fn` 接受的参数数量，则调用传递的函数 `fn`， 否则返回一个可接收剩余参数被柯里化后的函数 `fn`。
+如果你想柯里化一个接受可变参数数量的函数(可变参数的函数，例如 `Math.min()` )，你可以选择将参数个数传递给第二个参数 `arity`。
 
 ```js
 const curry = (fn, arity = fn.length, ...args) =>
