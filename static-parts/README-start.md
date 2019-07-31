@@ -14,7 +14,14 @@
 * 你可以把代码片段导入到 `Vscode` 中，点击查看操作指南[这里](https://github.com/WYseven/30-seconds-of-code/tree/master/vscode_snippets).
 * 您可以使用CLI应用程序从终端搜索、查看和复制这些代码片段 [查看这个仓库](https://github.com/sQVe/30s)。
 
-#### Related projects
+> 原文：[https://github.com/30-seconds/30-seconds-of-code](https://github.com/30-seconds/30-seconds-of-code)
+> 原作者：[Chalarangelo](https://github.com/Chalarangelo)
+> 翻译地址地址：[https://wyseven.github.io/30-seconds-of-code/](https://wyseven.github.io/30-seconds-of-code/)
+> 译者：[戎马](https://github.com/WYseven)
+
+本文翻译为译者所有，如有需要转载，请详细注明以上信息，谢谢合作。
+
+#### 相关项目
 
 * [30 Seconds of CSS](https://30-seconds.github.io/30-seconds-of-css/)
 * [30 Seconds of Interviews](https://30secondsofinterviews.org/)
@@ -26,9 +33,9 @@
 
 #### Package
 
-⚠️ **NOTICE:** A few of our snippets are not yet optimized for production (see disclaimers for individual snippet issues).
+⚠️ **NOTICE:** 我们的一些代码片段还没有针对生产环境进行优化(请参阅个别代码片段问题的免责声明).
 
-You can find a package with all the snippets on [npm](https://www.npmjs.com/package/30-seconds-of-code).
+您可以找到一个包含所有代码片段的包 [npm](https://www.npmjs.com/package/30-seconds-of-code).
 
 ```bash
 # With npm
@@ -41,7 +48,7 @@ yarn add 30-seconds-of-code
 [CDN link](https://unpkg.com/30-seconds-of-code/)
 
 <details>
-<summary>Details</summary>
+<summary>使用细节</summary>
 
 **Browser**
 
@@ -52,7 +59,7 @@ yarn add 30-seconds-of-code
 </script>
 ```
 
-**Node**
+**Node 中使用**
 
 ```js
 // CommonJS
@@ -66,4 +73,4 @@ _30s.average(1, 2, 3);
 
 </details>
 
-## Contents
+## 内容
